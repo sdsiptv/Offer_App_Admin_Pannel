@@ -177,7 +177,7 @@ const apis = {
   },
 
   editProductTags: (id, formData) => {
-    return API.put(API_ENDPOINTS.EDIT_PRODUCT_TAGS + "/" + id, formData, {
+    return API.put(API_ENDPOINTS.EDIT_PRODUCT_TAGS, formData, {
       [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
     });
   },

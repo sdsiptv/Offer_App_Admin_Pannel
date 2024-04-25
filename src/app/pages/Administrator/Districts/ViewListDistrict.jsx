@@ -137,7 +137,7 @@ export default function ViewListDistrict() {
 
                         <Grid item xs={12}>
                             <MaterialTables
-                                title={<span className={classes.text}>View District List</span>}
+                                title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>View District List</span>}
                                 columns={columns}
                                 data={District}
                                 deleteHandler={deleteHandler}
