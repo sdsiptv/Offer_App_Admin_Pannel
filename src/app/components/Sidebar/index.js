@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import Mybutton from './mybutton';
 import './Sidebar.css';
+import DonutLargeRoundedIcon from '@material-ui/icons/DonutLargeRounded';
 
 export default function Sidebar() {
   let history = useHistory();
@@ -19,11 +20,15 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
 
   const options = [
     { name: 'Administrator', open: open, setOpen: setOpen },
     { name: 'Vendors', open: open1, setOpen: setOpen1 },
     { name: 'Tags', open: open2, setOpen: setOpen2 },
+    { name: 'Customer Support', open: open3, setOpen: setOpen3 },
+    { name: 'Users', open: open4, setOpen: setOpen4 },
   ];
 
   let SubscribersMenu = [
@@ -59,7 +64,7 @@ export default function Sidebar() {
         <NavLink to="/dashboard" className="linkitem">
           <ListItem button className="listItem">
             <ListItemIcon>
-              <DashboardIcon style={{ color: 'black' }} />
+              <DonutLargeRoundedIcon style={{ color: '#DC7633' }} />
             </ListItemIcon>
             <ListItemText primary="Dashboard" style={{ color: 'black' }} />
           </ListItem>
@@ -108,6 +113,7 @@ export default function Sidebar() {
               { name: 'Pending Vendors', link: '/ListPendingVendors' },
               { name: 'Verifed Vendors', link: '/ListVerifiedVendors' },
               { name: 'Reject Vendors', link: '/ListRejectedVendors' },
+              { name: 'Vendors Level', link: '/ListRejectedVendors' },
             ].map((value, index) => {
               return (
                 <ListItem
@@ -136,7 +142,7 @@ export default function Sidebar() {
             {[
               { name: 'Offer Tags', link: '/ViewOfferTags' },
               { name: 'Product Tags', link: '/ViewProductTags' },
-
+              { name: 'Vendor Tags', link: '/ViewVendorTags' },
             ].map((value, index) => {
               return (
                 <ListItem
@@ -154,6 +160,64 @@ export default function Sidebar() {
             })}
           </List>
         </Collapse>
+
+        <Mybutton label="Users" onClick={handleClick} expand={open4} style={{ color: 'black' }} />
+        <Collapse in={open4} timeout="auto" unmountOnExit>
+          <List
+            component="div"
+            disablePadding
+            style={{ backgroundColor: 'white' }}
+          >
+            {[
+              { name: 'Show Users', link: '/ViewOfferTags' },
+              { name: 'BlockList Users', link: '/ViewOfferTags' },
+              { name: 'User Push Notification', link: '/ViewOfferTags' },
+            ].map((value, index) => {
+              return (
+                <ListItem
+                  buttons
+                  sx={{ pl: 2 }}
+                  key={value.name}
+                  className="listItem"
+                  onClick={() => {
+                    history.push(value.link);
+                  }}
+                >
+                  <ListItemText primary={value.name} />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
+
+
+        <Mybutton label="Customer Support" onClick={handleClick} expand={open3} style={{ color: 'black' }} />
+        <Collapse in={open3} timeout="auto" unmountOnExit>
+          <List
+            component="div"
+            disablePadding
+            style={{ backgroundColor: 'white' }}
+          >
+            {[
+              { name: 'Customer Support', link: '/ViewCustomerSupport' },
+            ].map((value, index) => {
+              return (
+                <ListItem
+                  buttons
+                  sx={{ pl: 2 }}
+                  key={value.name}
+                  className="listItem"
+                  onClick={() => {
+                    history.push(value.link);
+                  }}
+                >
+                  <ListItemText primary={value.name} />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
+
       </div>
     </List>
   );

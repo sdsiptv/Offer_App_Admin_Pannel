@@ -191,9 +191,53 @@ const apis = {
     );
   },
 
+  //--------------- CUSTOMER SUPPORT --------------//
 
+  getCustomerSupport: () => {
+    return API.get(API_ENDPOINTS.GET_CUSTOMER_SUPPORT);
+  },
 
+  addCustomerSupport: formData => {
+    return API.post(API_ENDPOINTS.POST_CUSTOMER_SUPPORT, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
 
+  editCustomerSupport: (id, formData) => {
+    return API.put(API_ENDPOINTS.EDIT_CUSTOMER_SUPPORT + "/" + id, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  deleteCustomerSupport: id => {
+    return API.delete(
+      API_ENDPOINTS.DELETE_CUSTOMER_SUPPORT + '/' + id,
+      {
+        [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+      },
+    );
+  },
+
+  //--------------- VENDOR TAGS --------------//
+
+  getVendorTags: (id) => {
+    return API.get(API_ENDPOINTS.GET_VENDOR_TAGS + "/" + id);
+  },
+
+  addVendorTags: (name, category_id) => {
+    return API.post(API_ENDPOINTS.POST_VENDOR_TAGS + "?name=" + name + "&category_id=" + category_id, {
+    });
+  },
+
+  editVendorTags: (name, category_id, id) => {
+    return API.put(API_ENDPOINTS.EDIT_VENDOR_TAGS + "?name=" + name + "&category_id=" + category_id + "&id=" + id, {
+    });
+  },
+
+  deleteVendorTags: (id) => {
+    return API.delete(API_ENDPOINTS.DELETE_VENDOR_TAGS + "?id=" + id, {
+    });
+  },
 
 
 

@@ -1,0 +1,175 @@
+import {
+    Button,
+    Container,
+    CssBaseline,
+    Grid,
+    TextField,
+    Typography,
+    MenuItem
+} from '@material-ui/core';
+import apis from 'app/api';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory, useLocation } from 'react-router-dom';
+import { GREEN, LIGHT_GREY } from 'utils/constant/color';
+import useStyles from 'styles/globalStyles';
+import { failureNotification, toastMessage } from 'utils/helper';
+
+export default function AddEditCustomerSupport({ pageMode = 'add' }) {
+    const hiddenFileInput = React.useRef(null);
+    const history = useHistory();
+    const location = useLocation();
+    const classes = useStyles();
+
+    const { register, handleSubmit, setValue } = useForm();
+
+    const onSubmit = ({ constact_number_1, constact_number_2, whatsapp, support_mail }) => {
+        let data = new FormData();
+        data.append('constact_number_1', constact_number_1);
+        data.append('constact_number_2', constact_number_2);
+        data.append('whatsapp', whatsapp);
+        data.append('support_mail', support_mail);
+
+        // if (pageMode === 'edit') {
+        //     const categoryId = location.state.state.data?.id;
+        //     data.append('id', categoryId);
+        // }
+
+        const apiCall =
+            pageMode === 'add'
+                ? apis.addCustomerSupport(data)
+                : apis.editCustomerSupport(location.state.state.data?.id, data);
+
+        apiCall
+            .then(res => {
+                toastMessage(
+                    pageMode === 'add' ? `Successfully Added ` : `Successfully updated`,
+                );
+                history.push('/ViewCustomerSupport');
+            })
+            .catch(err => {
+                failureNotification('Network error');
+            });
+    };
+
+    useEffect(() => {
+        if (location.state) {
+            let params = location.state.state.data;
+            setValue('constact_number_1', params.constact_number_1);
+            setValue('constact_number_2', params.constact_number_2);
+            setValue('whatsapp', params.whatsapp);
+            setValue('support_mail', params.support_mail);
+            setValue('id', params.id);
+        } else {
+            history.push('/AddCustomerSupport');
+        }
+    }, []);
+
+    return (
+        <Container component="main" maxWidth="sm">
+            <CssBaseline />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className={classes.paper}>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <Typography component="h1" variant="h5" className={classes.title}>
+                                {pageMode === 'add' ? 'ADD' : 'EDIT'} CUSTOMER SUPPORT
+                            </Typography>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="constact_number_1"
+                                label="Constact Number 1"
+                                type="number"
+                                InputLabelProps={{ shrink: true }}
+                                id="constact_number_1"
+                                {...register('constact_number_1', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="constact_number_2"
+                                label="Constact Number 2"
+                                type="number"
+                                InputLabelProps={{ shrink: true }}
+                                id="constact_number_2"
+                                {...register('constact_number_2', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="whatsapp"
+                                label="Whatsapp"
+                                type="number"
+                                InputLabelProps={{ shrink: true }}
+                                id="whatsapp"
+                                {...register('whatsapp', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="support_mail"
+                                label="Support Mail"
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                id="support_mail"
+                                {...register('support_mail', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'flex-end',
+                                }}
+                            >
+                                <div>
+                                    <Button
+                                        type="submit"
+                                        required
+                                        fullWidth
+                                        variant="contained"
+                                        style={{ backgroundColor: GREEN, width: 150 }}
+                                    >
+                                        {pageMode === 'add' ? 'Create' : 'Update'}
+                                    </Button>
+                                </div>
+                                <div>
+                                    <Button
+                                        required
+                                        fullWidth
+                                        variant="contained"
+                                        style={{ backgroundColor: LIGHT_GREY.length, width: 150 }}
+                                        onClick={() => {
+                                            history.push('/ViewCustomerSupport');
+                                        }}
+                                    >
+                                        Back
+                                    </Button>
+                                </div>
+                            </div>
+                        </Grid>
+                    </Grid>
+                </div>
+            </form>
+        </Container>
+    );
+}

@@ -1,7 +1,7 @@
 // const { BASE_URL } = process.env;
 
 // const BASE_URL = 'http://localhost:3001';
-const BASE_URL = 'http://192.168.1.4:3000';
+const BASE_URL = 'http://192.168.1.3:3000';
 // const BASE_URL = 'https://iptv.skylink.net.in/apis';
 // const BASE_URL = 'https://103.50.148.2/apis';
 
@@ -56,6 +56,15 @@ const API_ENDPOINTS = {
   EDIT_PRODUCT_TAGS:`${BASE_URL}/api/productTags/update`,
   DELETE_PRODUCT_TAGS:`${BASE_URL}/api/productTags/delete`,
 
+  GET_CUSTOMER_SUPPORT:`${BASE_URL}/api/customerSupport`,
+  POST_CUSTOMER_SUPPORT:`${BASE_URL}/api/customerSupport/insert`,
+  EDIT_CUSTOMER_SUPPORT:`${BASE_URL}/api/customerSupport/update`,
+  DELETE_CUSTOMER_SUPPORT:`${BASE_URL}/api/customerSupport/delete`,
+
+  GET_VENDOR_TAGS:`${BASE_URL}/api/vendorTags`,
+  POST_VENDOR_TAGS:`${BASE_URL}/api/vendorTags/insert`,
+  EDIT_VENDOR_TAGS:`${BASE_URL}/api/vendorTags/update`,
+  DELETE_VENDOR_TAGS:`${BASE_URL}/api/vendorTags/delete`,
 };
 
 // const EXTERNAL_API_ENDPOINTS = {

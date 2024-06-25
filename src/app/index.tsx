@@ -39,6 +39,10 @@ import ViewOfferTags from './pages/Tags/OfferTags/ViewOfferTags';
 import AddEditOfferTags from './pages/Tags/OfferTags/AddEditOfferTag/AddEditOfferTags';
 import ViewProductTags from './pages/Tags/ProductTags/ViewProductTags';
 import AddEditProductTags from './pages/Tags/ProductTags/AddEditProductTags/AddEditProductTags';
+import ViewCustomerSupport from './pages/CustomerSupport/ViewCustomerSupport';
+import AddEditCustomerSupport from './pages/CustomerSupport/AddEditCustomerSupport/AddEditCustomerSupport';
+import ListVendorTags from './pages/Tags/VendorTags/ListVendorTags';
+import AddEditVendorTags from './pages/Tags/VendorTags/AddEditVendorTags/AddEditVendorTags';
 
 
 export function App() {
@@ -197,7 +201,39 @@ export function App() {
             pageMode="edit"
           />
 
+          {/*----------- CUSTOMER SUPPORT ------------*/}
 
+          <PrivateRoute
+            path="/ViewCustomerSupport"
+            component={ViewCustomerSupport}
+          />
+          <PrivateRoute
+            path="/AddCustomerSupport"
+            component={AddEditCustomerSupport}
+            pageMode="add"
+          />
+          <PrivateRoute
+            path="/EditCustomerSupport"
+            component={AddEditCustomerSupport}
+            pageMode="edit"
+          />
+
+         {/*----------- Vendor TAGS ------------*/}
+
+         <PrivateRoute
+            path="/ViewVendorTags"
+            component={ListVendorTags}
+          />
+          <PrivateRoute
+            path="/AddVendorTags"
+            component={AddEditVendorTags}
+            pageMode="add"
+          />
+          <PrivateRoute
+            path="/EditVendorTags"
+            component={AddEditVendorTags}
+            pageMode="edit"
+          />
 
           <Route component={NotFoundPage} />
         </Switch>

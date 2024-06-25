@@ -32,7 +32,7 @@ const session = (state = getDefaultState(), action) => {
         isLoading: false,
         isAuthenticated: true,
         error: undefined,
-        // token: token,
+        token: token,
         fullname: fullname,
         roles: roles,
       };
@@ -43,7 +43,7 @@ const session = (state = getDefaultState(), action) => {
         isLoading: false,
         isAuthenticated: false,
         error: { message: 'Authentication Failed', showError: true },
-        // token: '',
+        token: '',
         fullname: '',
         roles: '',
       };
@@ -55,7 +55,7 @@ const session = (state = getDefaultState(), action) => {
         ...state,
         isLoading: false,
         isAuthenticated: false,
-        // token: '',
+        token: '',
         error: undefined,
         fullname: '',
         roles: '',
