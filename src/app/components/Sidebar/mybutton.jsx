@@ -38,7 +38,7 @@ const Mybutton = props => {
     >
       <ListItemIcon>
         {props.label === 'Dasboard' ? (
-          <DashboardIcon style={{ color: '#DC7633' }} />
+          <LineStyleIcon style={{ color: '#DC7633' }} />
         ) : props.label === 'Administrator' ? (
           <GpsFixedIcon style={{ color: '#DC7633' }} />
         ) : props.label === 'Vendors' ? (

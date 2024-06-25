@@ -11,6 +11,8 @@ import { NavLink, useHistory } from 'react-router-dom';
 import Mybutton from './mybutton';
 import './Sidebar.css';
 import DonutLargeRoundedIcon from '@material-ui/icons/DonutLargeRounded';
+import LineStyleIcon from '@material-ui/icons/LineStyle';
+
 
 export default function Sidebar() {
   let history = useHistory();
@@ -64,7 +66,7 @@ export default function Sidebar() {
         <NavLink to="/dashboard" className="linkitem">
           <ListItem button className="listItem">
             <ListItemIcon>
-              <DonutLargeRoundedIcon style={{ color: '#DC7633' }} />
+              <LineStyleIcon style={{ color: '#DC7633' }} />
             </ListItemIcon>
             <ListItemText primary="Dashboard" style={{ color: 'black' }} />
           </ListItem>
