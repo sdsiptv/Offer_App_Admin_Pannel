@@ -27,6 +27,8 @@ import { useHistory } from 'react-router-dom';
 import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
+import ReplayRoundedIcon from '@material-ui/icons/ReplayRounded';
+import DRMWaitListTable from 'app/components/DrmWaitlistTable';
 
 export default function ViewRejectedVendors() {
   const classes = useStyles();
@@ -39,6 +41,23 @@ export default function ViewRejectedVendors() {
     { field: 'shop_name', title: 'shop_name' },
     { field: 'emailid', title: 'emailid' },
     { field: 'mobile_no', title: 'mobile_no' },
+    {
+      field: 'actions',
+      title: 'Retrieve Vendor',
+      sorting: false,
+      render: rowData => (
+        <Tooltip title="View">
+          <IconButton
+            variant="contained"
+            color="secondary"
+            size="small"
+            onClick={() => handleRetrieve(rowData)}
+          >
+            <ReplayRoundedIcon />
+          </IconButton>
+        </Tooltip>
+      ),
+    },
     {
       field: 'actions',
       title: 'View Vendor',
@@ -57,6 +76,16 @@ export default function ViewRejectedVendors() {
       ),
     },
   ];
+
+  const handleRetrieve = (rowData) => {
+    apis.addRetrieveVendors(rowData.id).then(res => {
+      toastMessage('Vendor Retrieve successfully');
+      getRejectedVendors();
+    }).catch(error => {
+      console.error('Error accepting vendor:', error);
+      toastMessage('Failed to accept vendor');
+    });
+  };
 
   const handleViewVendor = (vendorData) => {
     setSelectedVendor(vendorData);
@@ -101,7 +130,7 @@ export default function ViewRejectedVendors() {
           </Grid>
 
           <Grid item xs={12}>
-            <MaterialTables
+            <DRMWaitListTable
               title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>LIST REJECTED VENDORS</span>}
               columns={columns}
               data={RejectedVendors}

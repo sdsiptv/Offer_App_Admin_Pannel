@@ -27,6 +27,7 @@ import { useHistory } from 'react-router-dom';
 import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
+import DRMWaitListTable from 'app/components/DrmWaitlistTable';
 
 export default function ViewVerifiedVendors() {
   const classes = useStyles();
@@ -102,7 +103,7 @@ export default function ViewVerifiedVendors() {
  
 
           <Grid item xs={12}>
-            <MaterialTables
+            <DRMWaitListTable
               title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>LIST VERIFIED VENDORS</span>}
               columns={columns}
               data={VerifiedVendors}

@@ -43,6 +43,8 @@ import ViewCustomerSupport from './pages/CustomerSupport/ViewCustomerSupport';
 import AddEditCustomerSupport from './pages/CustomerSupport/AddEditCustomerSupport/AddEditCustomerSupport';
 import ListVendorTags from './pages/Tags/VendorTags/ListVendorTags';
 import AddEditVendorTags from './pages/Tags/VendorTags/AddEditVendorTags/AddEditVendorTags';
+import ListUsers from './pages/Users/ShowUsers/ListUsers';
+import ListBlocklistUsers from './pages/Users/BlockListUsers';
 
 
 export function App() {
@@ -218,9 +220,9 @@ export function App() {
             pageMode="edit"
           />
 
-         {/*----------- Vendor TAGS ------------*/}
+          {/*----------- Vendor TAGS ------------*/}
 
-         <PrivateRoute
+          <PrivateRoute
             path="/ViewVendorTags"
             component={ListVendorTags}
           />
@@ -233,6 +235,17 @@ export function App() {
             path="/EditVendorTags"
             component={AddEditVendorTags}
             pageMode="edit"
+          />
+
+          {/*----------- USERS ------------*/}
+
+          <PrivateRoute
+            path="/ViewUsers"
+            component={ListUsers}
+          />
+          <PrivateRoute
+            path="/ViewBlockListUsers"
+            component={ListBlocklistUsers}
           />
 
           <Route component={NotFoundPage} />

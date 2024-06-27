@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
+import DRMWaitListTable from 'app/components/DrmWaitlistTable';
 
 export default function ViewAllVendors() {
     const classes = useStyles();
@@ -72,7 +73,7 @@ export default function ViewAllVendors() {
             <div className={classes.paper}>
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
-                        <MaterialTables
+                        <DRMWaitListTable
                             title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>ALL Vendor List</span>}
                             columns={columns}
                             data={allVendors}

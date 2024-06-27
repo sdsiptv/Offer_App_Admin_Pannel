@@ -1,17 +1,11 @@
 import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import FingerprintIcon from '@material-ui/icons/Fingerprint';
-import MusicVideoIcon from '@material-ui/icons/MusicVideo';
-import TuneIcon from '@material-ui/icons/Tune';
-import TvIcon from '@material-ui/icons/Tv';
 
-import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
-import FilterTwoToneIcon from '@material-ui/icons/FilterTwoTone';
+import MusicVideoIcon from '@material-ui/icons/MusicVideo';
+import TvIcon from '@material-ui/icons/Tv';
 import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
 import PriorityHighRoundedIcon from '@material-ui/icons/PriorityHighRounded';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 
 
 import LineStyleIcon from '@material-ui/icons/LineStyle';
@@ -58,7 +52,7 @@ const Mybutton = props => {
         ) : props.label === 'Customer Support' ? (
           <EmojiPeopleTwoToneIcon style={{ color: '#DC7633' }} />
         ) : (
-          <PriorityHighRoundedIcon style={{ color: '#DC7633' }} />
+          <RedditIcon style={{ color: '#DC7633' }} />
         )}
       </ListItemIcon>
       <ListItemText primary={props.label} />

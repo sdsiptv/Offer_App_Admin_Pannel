@@ -40,31 +40,39 @@ const API_ENDPOINTS = {
 
   ACCEPT_VENDORS: `${BASE_URL}/api/vendor/aproval`,
   REJECT_VENDORS: `${BASE_URL}/api/vendor/reject`,
+  RETRIEVE_VENDORS: `${BASE_URL}/api/vendor/retrive`,
 
   GET_ALL_VENDORS: `${BASE_URL}/api/vendor/allVendorList`,
   GET_VERIFIED_VENDOR: `${BASE_URL}/api/vendor/verifiedVendorList`,
   GET_PENDING_VENDOR: `${BASE_URL}/api/vendor/pendingVendorList`,
   GET_REJECTED_VENDOR: `${BASE_URL}/api/vendor/rejectedVendorList`,
 
-  GET_OFFER_TAGS:`${BASE_URL}/api/offerTags`,
-  POST_OFFER_TAGS:`${BASE_URL}/api/offerTags/insert`,
-  EDIT_OFFER_TAGS:`${BASE_URL}/api/offerTags/update`,
-  DELETE_OFFER_TAGS:`${BASE_URL}/api/offerTags/delete`,
+  GET_OFFER_TAGS: `${BASE_URL}/api/offerTags`,
+  POST_OFFER_TAGS: `${BASE_URL}/api/offerTags/insert`,
+  EDIT_OFFER_TAGS: `${BASE_URL}/api/offerTags/update`,
+  DELETE_OFFER_TAGS: `${BASE_URL}/api/offerTags/delete`,
 
-  GET_PRODUCT_TAGS:`${BASE_URL}/api/productTags`,
-  POST_PRODUCT_TAGS:`${BASE_URL}/api/productTags/insert`,
-  EDIT_PRODUCT_TAGS:`${BASE_URL}/api/productTags/update`,
-  DELETE_PRODUCT_TAGS:`${BASE_URL}/api/productTags/delete`,
+  GET_PRODUCT_TAGS: `${BASE_URL}/api/productTags`,
+  POST_PRODUCT_TAGS: `${BASE_URL}/api/productTags/insert`,
+  EDIT_PRODUCT_TAGS: `${BASE_URL}/api/productTags/update`,
+  DELETE_PRODUCT_TAGS: `${BASE_URL}/api/productTags/delete`,
 
-  GET_CUSTOMER_SUPPORT:`${BASE_URL}/api/customerSupport`,
-  POST_CUSTOMER_SUPPORT:`${BASE_URL}/api/customerSupport/insert`,
-  EDIT_CUSTOMER_SUPPORT:`${BASE_URL}/api/customerSupport/update`,
-  DELETE_CUSTOMER_SUPPORT:`${BASE_URL}/api/customerSupport/delete`,
+  GET_CUSTOMER_SUPPORT: `${BASE_URL}/api/customerSupport`,
+  POST_CUSTOMER_SUPPORT: `${BASE_URL}/api/customerSupport/insert`,
+  EDIT_CUSTOMER_SUPPORT: `${BASE_URL}/api/customerSupport/update`,
+  DELETE_CUSTOMER_SUPPORT: `${BASE_URL}/api/customerSupport/delete`,
 
-  GET_VENDOR_TAGS:`${BASE_URL}/api/vendorTags`,
-  POST_VENDOR_TAGS:`${BASE_URL}/api/vendorTags/insert`,
-  EDIT_VENDOR_TAGS:`${BASE_URL}/api/vendorTags/update`,
-  DELETE_VENDOR_TAGS:`${BASE_URL}/api/vendorTags/delete`,
+  GET_VENDOR_TAGS: `${BASE_URL}/api/vendorTags`,
+  POST_VENDOR_TAGS: `${BASE_URL}/api/vendorTags/insert`,
+  EDIT_VENDOR_TAGS: `${BASE_URL}/api/vendorTags/update`,
+  DELETE_VENDOR_TAGS: `${BASE_URL}/api/vendorTags/delete`,
+
+  GET_USERS: `${BASE_URL}/api/users`,
+  GET_BLOCK_USERS: `${BASE_URL}/api/users/getblockedusers`,
+
+  BLOCK_USERS: `${BASE_URL}/api/users/block`,
+  UNBLOCK_USERS: `${BASE_URL}/api/users/unblock`,
+
 };
 
 // const EXTERNAL_API_ENDPOINTS = {

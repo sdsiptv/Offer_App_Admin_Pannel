@@ -171,8 +171,8 @@ export default function Sidebar() {
             style={{ backgroundColor: 'white' }}
           >
             {[
-              { name: 'Show Users', link: '/ViewOfferTags' },
-              { name: 'BlockList Users', link: '/ViewOfferTags' },
+              { name: 'Show Users', link: '/ViewUsers' },
+              { name: 'BlockList Users', link: '/ViewBlockListUsers' },
               { name: 'User Push Notification', link: '/ViewOfferTags' },
             ].map((value, index) => {
               return (
@@ -191,7 +191,6 @@ export default function Sidebar() {
             })}
           </List>
         </Collapse>
-
 
         <Mybutton label="Customer Support" onClick={handleClick} expand={open3} style={{ color: 'black' }} />
         <Collapse in={open3} timeout="auto" unmountOnExit>

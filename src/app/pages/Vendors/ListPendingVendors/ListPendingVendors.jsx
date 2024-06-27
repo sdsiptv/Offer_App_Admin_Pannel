@@ -28,7 +28,6 @@ import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
 
-
 export default function ViewPendingVendors() {
   const classes = useStyles();
   const history = useHistory();
