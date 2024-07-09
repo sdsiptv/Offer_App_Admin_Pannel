@@ -71,12 +71,25 @@ const useStyles = makeStyles(theme => ({
     height: "57px",
   },
 
+  chartHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: theme.spacing(2),
+  },
+
+  chartButtons: {
+    display: 'flex',
+    gap: theme.spacing(1),
+  },
+
   Feedback: {
     fontSize: 24,
     color: "#00261C",
     fontWeight: 400,
     marginTop: "19px",
-    borderRadius: "10px"
+    borderRadius: "10px",
+    padding: theme.spacing(2),
+
   },
 
   FeedbackBlood: {
@@ -94,8 +107,6 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: "#00DEA3",
     },
   },
-
-
 
   Buttonsmall: {
     backgroundColor: "#FFFFFF",

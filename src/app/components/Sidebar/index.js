@@ -24,6 +24,8 @@ export default function Sidebar() {
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
   const [open4, setOpen4] = useState(false);
+  const [open5, setOpen5] = useState(false);
+
 
   const options = [
     { name: 'Administrator', open: open, setOpen: setOpen },
@@ -31,6 +33,7 @@ export default function Sidebar() {
     { name: 'Tags', open: open2, setOpen: setOpen2 },
     { name: 'Customer Support', open: open3, setOpen: setOpen3 },
     { name: 'Users', open: open4, setOpen: setOpen4 },
+    { name: 'Events', open: open5, setOpen: setOpen5 },
   ];
 
   let SubscribersMenu = [
@@ -116,6 +119,7 @@ export default function Sidebar() {
               { name: 'Verifed Vendors', link: '/ListVerifiedVendors' },
               { name: 'Reject Vendors', link: '/ListRejectedVendors' },
               { name: 'Vendors Level', link: '/ListRejectedVendors' },
+              { name: 'Vendor Push Notification', link: '/AddVendorPushNotification' },
             ].map((value, index) => {
               return (
                 <ListItem
@@ -174,6 +178,33 @@ export default function Sidebar() {
               { name: 'Show Users', link: '/ViewUsers' },
               { name: 'BlockList Users', link: '/ViewBlockListUsers' },
               { name: 'User Push Notification', link: '/ViewOfferTags' },
+            ].map((value, index) => {
+              return (
+                <ListItem
+                  buttons
+                  sx={{ pl: 2 }}
+                  key={value.name}
+                  className="listItem"
+                  onClick={() => {
+                    history.push(value.link);
+                  }}
+                >
+                  <ListItemText primary={value.name} />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
+
+        <Mybutton label="Events" onClick={handleClick} expand={open5} style={{ color: 'black' }} />
+        <Collapse in={open5} timeout="auto" unmountOnExit>
+          <List
+            component="div"
+            disablePadding
+            style={{ backgroundColor: 'white' }}
+          >
+            {[
+              { name: 'Handle Events', link: '/ViewEvents' },
             ].map((value, index) => {
               return (
                 <ListItem

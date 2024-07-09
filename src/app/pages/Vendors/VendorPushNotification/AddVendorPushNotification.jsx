@@ -7,8 +7,7 @@ import {
     Grid,
     MenuItem,
     TextField,
-    Typography,
-    IconButton
+    Typography
 } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import apis from 'app/api';
@@ -19,26 +18,25 @@ import { GREEN, LIGHT_GREY } from 'utils/constant/color';
 import { countries } from 'utils/constant/countries';
 import { countryToFlag, toastMessage, failureNotification } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import toast, { Toaster } from 'react-hot-toast';
 
-const roles = ['admin', 'mso', 'SmsUser', 'audit'];
+const roles = ['1', '2'];
 
-export default function AddAdminSignUp() {
+export default function AddVendorPushNotification() {
     const history = useHistory();
     const classes = useStyles();
-    const [country, setCountry] = useState('');
     const [role, setRole] = useState('admin');
-    const [inputValue, setInputValue] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [State, setState] = useState([]);
     const [selectedState, setSelectedState] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [District, setDistrict] = useState([]);
     const [City, setCity] = useState([]);
     const [selectedCity, setSelectedCity] = useState('');
+    const [UseState, setUseState] = useState(false);
+    const [UseDistrict, setUseDistrict] = useState(false);
+    const [UseCity, setUseCity] = useState(false);
+    const [customerData, setCustomerData] = useState([]);
+    const [userIds, setUserId] = useState(null);
 
     const {
         register,
@@ -85,40 +83,51 @@ export default function AddAdminSignUp() {
             });
     };
 
+    const handleGetCustomer = () => {
+        apis.getAllVendors().then(res => {
+            setCustomerData(res.data);
+        });
+    };
+
+    useEffect(() => {
+        handleGetCustomer();
+    }, []);
+
+    const handleChangeRole = event => {
+        setRole(event.target.value);
+    };
+
+    const handleCheckboxChange = (checkbox) => {
+        setUseState(checkbox === 'state');
+        setUseDistrict(checkbox === 'district');
+        setUseCity(checkbox === 'city');
+    };
+
     const onSubmit = async ({
-        fullname,
-        emailid,
-        mobile_no,
-        password,
-        confirm_password,
-        address,
-        postalcode,
+        message,
+        title
     }) => {
         let data = new FormData();
-        data.append('fullname', fullname);
-        data.append('emailid', emailid);
-        data.append('mobile_no', mobile_no);
-        data.append('confirm_password', confirm_password);
-        data.append('password', password);
-        data.append('address', address);
-        data.append('postalcode', postalcode);
-        data.append('state', selectedState);
-        data.append('district', selectedDistrict);
-        data.append('city', selectedCity);
+        if (UseState) data.append('state', selectedState);
+        if (UseDistrict) data.append('district', selectedDistrict);
+        if (UseCity) data.append('city', selectedCity);
+        data.append('message', message);
+        data.append('title', title);
+        data.append('type', role);
+        data.append('vendor', userIds);
 
         try {
-            const res = await apis.addAdmin(data);
+            const res = await apis.addVendorPushNotification(data);
             toast.success('Successfully Added', { duration: 5000 });
             history.push('/dashboard');
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 toast.error('Unauthorized: Please check your credentials.', { duration: 5000 });
             } else {
-                toast.error('Email already exists..!', { duration: 5000 });
+                toast.error('Unauthorized..!', { duration: 5000 });
             }
         }
     };
-
 
     return (
         <div>
@@ -132,123 +141,31 @@ export default function AddAdminSignUp() {
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Typography component="h1" variant="h5" className={classes.title}>
-                                    NEW ADMIN USER
+                                    VENDOR PUSH NOTIFICATION
                                 </Typography>
                             </Grid>
 
                             <Grid item xs={12}>
                                 <Grid container spacing={2} maxwidth="xs">
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            autoComplete="fullname"
-                                            name="fullname"
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            id="fullname"
-                                            label="Full Name"
-                                            type="text"
-                                            autoFocus
-                                            size="small"
-                                            {...register('fullname', { required: true })}
-                                        />
-                                    </Grid>
 
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            id="emailid"
-                                            label="Email Address"
-                                            name="emailid"
-                                            type="emailid"
-                                            autoComplete="text"
-                                            size="small"
-                                            {...register('emailid', { required: true })}
-                                        />
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            name="mobile_no"
-                                            label="Mobile Number"
-                                            type="text"
-                                            id="mobile_no"
-                                            size="small"
-                                            {...register('mobile_no', { required: true, minLength: 10 })}
-                                            error={Boolean(errors.phone)}
-                                            helperText={
-                                                errors.phone && '*Mobile Number must be minimum 10 digits'
+                                    <Grid item xs={4}>
+                                        <FormControlLabel
+                                            label="State"
+                                            control={
+                                                <Checkbox
+                                                    checked={UseState}
+                                                    onChange={() => handleCheckboxChange('state')}
+                                                    style={{ color: "#673ab7" }}
+                                                />
                                             }
                                         />
                                     </Grid>
 
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            name="password"
-                                            label="Password"
-                                            type={showPassword ? 'text' : 'password'}
-                                            id="password"
-                                            {...register('password', { required: true })}
-                                            InputProps={{
-                                                endAdornment: (
-                                                    <IconButton onClick={() => setShowPassword(!showPassword)}>
-                                                        {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                                                    </IconButton>
-                                                ),
-                                            }}
-                                        />
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            name="confirm_password"
-                                            label="Confirm Password"
-                                            type={showConfirmPassword ? 'text' : 'password'}
-                                            id="confirm_password"
-                                            {...register('confirm_password', { required: true })}
-                                            InputProps={{
-                                                endAdornment: (
-                                                    <IconButton onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                                                        {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                                                    </IconButton>
-                                                ),
-                                            }}
-                                        />
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            autoComplete="address"
-                                            name="address"
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            id="address"
-                                            label="Address"
-                                            type="text"
-                                            autoFocus
-                                            size="small"
-                                            {...register('address', { required: true })}
-                                        />
-                                    </Grid>
-
-                                    <Grid item xs={12}>
+                                    <Grid item xs={8}>
                                         <TextField
                                             id="filled-select-state"
                                             select
                                             label="State"
-                                            required
                                             fullWidth
                                             helperText="Please select your State"
                                             variant="outlined"
@@ -270,7 +187,20 @@ export default function AddAdminSignUp() {
                                         </TextField>
                                     </Grid>
 
-                                    <Grid item xs={12}>
+                                    <Grid item xs={4}>
+                                        <FormControlLabel
+                                            label="District"
+                                            control={
+                                                <Checkbox
+                                                    checked={UseDistrict}
+                                                    onChange={() => handleCheckboxChange('district')}
+                                                    style={{ color: "#673ab7" }}
+                                                />
+                                            }
+                                        />
+                                    </Grid>
+
+                                    <Grid item xs={8}>
                                         <TextField
                                             variant="outlined"
                                             select
@@ -298,7 +228,20 @@ export default function AddAdminSignUp() {
                                         </TextField>
                                     </Grid>
 
-                                    <Grid item xs={12}>
+                                    <Grid item xs={4}>
+                                        <FormControlLabel
+                                            label="City"
+                                            control={
+                                                <Checkbox
+                                                    checked={UseCity}
+                                                    onChange={() => handleCheckboxChange('city')}
+                                                    style={{ color: "#673ab7" }}
+                                                />
+                                            }
+                                        />
+                                    </Grid>
+
+                                    <Grid item xs={8}>
                                         <TextField
                                             variant="outlined"
                                             select
@@ -313,7 +256,7 @@ export default function AddAdminSignUp() {
                                             value={selectedCity}
                                             onChange={(e) => {
                                                 const selectedCityId = e.target.value;
-                                                console.log('Selected district ID:', selectedCityId);
+                                                console.log('Selected city ID:', selectedCityId);
                                                 setSelectedCity(selectedCityId);
                                             }}
                                         >
@@ -326,20 +269,79 @@ export default function AddAdminSignUp() {
                                     </Grid>
 
                                     <Grid item xs={12}>
+                                        <Autocomplete
+                                            id="user_id"
+                                            options={customerData}
+                                            getOptionLabel={option => option?.id + ' - ' + option?.shop_name}
+                                            onChange={(event, newValue) => {
+                                                if (newValue) {
+                                                    setUserId(newValue.id);
+                                                } else {
+                                                    setUserId(null);
+                                                }
+                                            }}
+                                            renderInput={params => (
+                                                <TextField
+                                                    {...params}
+                                                    label="Customer"
+                                                    variant="outlined"
+                                                    helperText="Please select your Customer"
+                                                    autoFocus
+                                                />
+                                            )}
+                                        />
+                                    </Grid>
+
+                                    <Grid item xs={12}>
                                         <TextField
                                             variant="outlined"
                                             required
                                             fullWidth
-                                            name="postalcode"
-                                            label="Postal Code"
-                                            type="number"
-                                            id="postalcode"
+                                            name="title"
+                                            label="title"
+                                            type="text"
+                                            id="title"
                                             size="small"
-                                            {...register('postalcode', { required: true })}
+                                            {...register('title', { required: true })}
                                         />
                                     </Grid>
 
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            variant="outlined"
+                                            required
+                                            fullWidth
+                                            name="message"
+                                            label="Message"
+                                            type="text"
+                                            id="message"
+                                            size="small"
+                                            {...register('message', { required: true })}
+                                        />
+                                    </Grid>
+
+                                    {/* <Grid item xs={12}>
+                                        <TextField
+                                            variant="outlined"
+                                            id="standard-select-currency"
+                                            select
+                                            label="Type"
+                                            value={role}
+                                            onChange={handleChangeRole}
+                                            style={{ width: 472 }}
+                                            size="small"
+                                            required
+                                        >
+                                            {roles.map(option => (
+                                                <MenuItem key={option} value={option}>
+                                                    {option}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+                                    </Grid> */}
+
                                 </Grid>
+                                
                             </Grid>
 
                             <Grid item xs={12}>
@@ -356,7 +358,7 @@ export default function AddAdminSignUp() {
                                             variant="contained"
                                             style={{ backgroundColor: GREEN, width: 200 }}
                                         >
-                                            Resigter
+                                            Send
                                         </Button>
                                     </div>
                                     <div>
@@ -375,7 +377,6 @@ export default function AddAdminSignUp() {
                         </Grid>
                     </div>
                 </form>
-
             </Container>
             <Toaster />
         </div>

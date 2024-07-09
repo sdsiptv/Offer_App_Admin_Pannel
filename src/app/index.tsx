@@ -45,6 +45,9 @@ import ListVendorTags from './pages/Tags/VendorTags/ListVendorTags';
 import AddEditVendorTags from './pages/Tags/VendorTags/AddEditVendorTags/AddEditVendorTags';
 import ListUsers from './pages/Users/ShowUsers/ListUsers';
 import ListBlocklistUsers from './pages/Users/BlockListUsers';
+import AddVendorPushNotification from './pages/Vendors/VendorPushNotification/AddVendorPushNotification';
+import ListEvents from './pages/Events/ListEvents';
+import AddEditEvents from './pages/Events/AddEditEvents/AddEditEvents';
 
 
 export function App() {
@@ -53,7 +56,7 @@ export function App() {
   let isSelfSigned = process.env.REACT_APP_SELF;
 
   return (
-    <BrowserRouter basename="/admin">
+    <BrowserRouter basename="/offerapp">
       <Helmet
         titleTemplate="%s - SDS OFFER"
         defaultTitle="SDS OFFER"
@@ -169,6 +172,11 @@ export function App() {
             component={ViewRejectedVendors}
           />
 
+          <PrivateRoute
+            path="/AddVendorPushNotification"
+            component={AddVendorPushNotification}
+          />
+
           {/*----------- OFFER TAGS ------------*/}
 
           <PrivateRoute
@@ -246,6 +254,23 @@ export function App() {
           <PrivateRoute
             path="/ViewBlockListUsers"
             component={ListBlocklistUsers}
+          />
+
+          {/*----------- EVENTS ------------*/}
+
+          <PrivateRoute
+            path="/ViewEvents"
+            component={ListEvents}
+          />
+          <PrivateRoute
+            path="/AddEvents"
+            component={AddEditEvents}
+            pageMode="add"
+          />
+          <PrivateRoute
+            path="/EditEvents"
+            component={AddEditEvents}
+            pageMode="edit"
           />
 
           <Route component={NotFoundPage} />

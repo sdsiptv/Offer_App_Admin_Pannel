@@ -9,11 +9,12 @@ import { useHistory } from 'react-router-dom';
 import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
+import moment from 'moment';
 
-export default function ViewListCategory() {
+export default function ListEvents() {
   const classes = useStyles();
   const history = useHistory();
-  const [Category, setCategory] = useState([]);
+  const [Events, setEvents] = useState([]);
 
   const columns = [
     {
@@ -24,8 +25,14 @@ export default function ViewListCategory() {
           <img src={rowData.images} alt="" width={40} height={30} />
         ) : null,
     },
-    { field: 'name', title: 'Name' },
-    // { field: 'position', title: 'Position' },
+    { field: 'event_name', title: 'Event Name' },
+    { field: 'url', title: 'URL' },
+    { field: 'locations', title: 'Location' },
+    {
+      field: 'event_date',
+      title: 'Event Date',
+      // render: rowData => moment(rowData.created_at).format('YYYY-MM-DD'),
+    },
     {
       field: 'actions',
       title: 'Actions',
@@ -37,7 +44,7 @@ export default function ViewListCategory() {
             size="small"
             color="secondary"
             onClick={() => {
-              history.push('EditCategory', {
+              history.push('EditEvents', {
                 state: { data: rowData },
               });
             }}
@@ -49,24 +56,16 @@ export default function ViewListCategory() {
     },
   ];
 
-  const getCategory = () => {
-    apis.getCategory().then(res => {
+  const getEvents = () => {
+    apis.getEvents().then(res => {
       console.log('hii', res?.data)
-      setCategory(res?.data);
+      setEvents(res?.data);
     });
   };
 
   useEffect(() => {
-    getCategory();
+    getEvents();
   }, []);
-
-  // const deleteHandler = data => {
-  //   let filter = data.map(obj => obj.id);
-  //   apis.deleteCategory(JSON.stringify(filter)).then(res => {
-  //     toastMessage('Successfully deleted');
-  //     getCategory();
-  //   });
-  // };
 
   const deleteHandler = data => {
     let filter = data.map(obj => obj.id);
@@ -75,9 +74,9 @@ export default function ViewListCategory() {
       return;
     }
     let idToDelete = filter[0];
-    apis.deleteCategory(idToDelete).then(res => {
+    apis.deleteEvents(idToDelete).then(res => {
       toastMessage('Successfully Deleted');
-      getCategory();
+      getEvents();
     });
   };
 
@@ -95,19 +94,19 @@ export default function ViewListCategory() {
                 variant="contained"
                 style={{ backgroundColor: GREEN }}
                 onClick={() => {
-                  history.push('/AddCategory');
+                  history.push('/AddEvents');
                 }}
               >
-                Add Category
+                Add Events
               </Button>
             </div>
           </Grid>
 
           <Grid item xs={12}>
             <MaterialTables
-              title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>PRODUCT CATEGORY</span>}
+              title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>HANDLE EVENTS</span>}
               columns={columns}
-              data={Category}
+              data={Events}
               deleteHandler={deleteHandler}
             />
           </Grid>

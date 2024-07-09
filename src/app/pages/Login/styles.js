@@ -1,25 +1,25 @@
 import { makeStyles } from '@material-ui/core';
-import { BLUE, LIGHT_GREY, YELLOW, RADIUM } from 'utils/constant/color';
-import backgroundImage from "../../assets/DashboardLogin.jpg"
+import { LIGHT_GREY } from 'utils/constant/color';
+import backgroundImage from '../../assets/DashboardLogin.jpg';
+
 const useStyles = makeStyles(theme => ({
   paper: {
-    marginTop: theme.spacing(9),
-    height: '67vh',
+    marginTop: theme.spacing(8),
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: LIGHT_GREY,
-    justifyContent: 'center',
-    borderRadius: "20px",
-    border: '3px solid #9EEFE5',
+    borderRadius: '20px',
+    padding: theme.spacing(4),
     boxShadow: '5px 5px 4px 0px rgba(0, 0, 0, 0.13)',
-    width: '95%',
-    marginLeft: '20px'
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
+      padding: theme.spacing(6),
+    },
   },
-
   backgroundImage: {
     background: `url(${backgroundImage})`,
-    height: "800px",
+    minHeight: '100vh',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     display: 'flex',
@@ -27,28 +27,39 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   image: {
-    width: '470px',
+    width: '100%',
+    height: 'auto',
+    marginTop:"10px",
+    marginLeft:'-22px',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft:'-15px',
+      width: '420px',
+      height: '400px',
+    },
+  },
+  formContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(2),
+    },
   },
   login: {
-    marginLeft: "280px",
-    paddingTop: "50px",
-    fontWeight: 700
+    marginTop: theme.spacing(2),
+    fontWeight: 700,
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(2),
-    marginLeft: '140px'
+    width: '100%',
+    marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  responsive: {
-    // backgroundColor: "#AAF9FF",
-    marginTop: "140px"
-  }
 }));
+
 export default useStyles;

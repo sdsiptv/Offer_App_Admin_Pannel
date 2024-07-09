@@ -1,12 +1,9 @@
 // const { BASE_URL } = process.env;
 
 // const BASE_URL = 'http://localhost:3001';
-const BASE_URL = 'http://192.168.1.3:3000';
+const BASE_URL = 'http://192.168.1.14:3000';
 // const BASE_URL = 'https://iptv.skylink.net.in/apis';
-// const BASE_URL = 'https://103.50.148.2/apis';
-
-const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-const TMDB_API_KEY = '55d0d2f057c00a9ba62a3403d8a2aa22';
+// const BASE_URL = 'https://192.168.1.11/offerapp';
 
 const API_ENDPOINTS = {
   LOGIN: `${BASE_URL}/api/adminlogin`,
@@ -47,6 +44,8 @@ const API_ENDPOINTS = {
   GET_PENDING_VENDOR: `${BASE_URL}/api/vendor/pendingVendorList`,
   GET_REJECTED_VENDOR: `${BASE_URL}/api/vendor/rejectedVendorList`,
 
+  POST_VENDOR_PUSH_NOTIFICATION: `${BASE_URL}/api/notification`,
+
   GET_OFFER_TAGS: `${BASE_URL}/api/offerTags`,
   POST_OFFER_TAGS: `${BASE_URL}/api/offerTags/insert`,
   EDIT_OFFER_TAGS: `${BASE_URL}/api/offerTags/update`,
@@ -73,21 +72,16 @@ const API_ENDPOINTS = {
   BLOCK_USERS: `${BASE_URL}/api/users/block`,
   UNBLOCK_USERS: `${BASE_URL}/api/users/unblock`,
 
-};
+  GET_EVENTS: `${BASE_URL}/api/event`,
+  POST_EVENTS: `${BASE_URL}/api/event/insert`,
+  EDIT_EVENTS: `${BASE_URL}/api/event/update`,
+  DELETE_EVENTS: `${BASE_URL}/api/event/delete`,
 
-// const EXTERNAL_API_ENDPOINTS = {
-//   SEARCH_TMDB_MOVIES: `${TMDB_BASE_URL}/search/movie`,
-//   GET_TMDB_MOVIE_DETAILS: `${TMDB_BASE_URL}/movie`,
-//   SEARCH_TMDB_TV: `${TMDB_BASE_URL}/search/tv`,
-//   GET_TMDB_TV_DETAILS: `${TMDB_BASE_URL}/tv`,
-//   GET_TMDB_MOVIE_DETAILS_ID: `${TMDB_BASE_URL}/movie`,
-//   GET_TMDB_TV_DETAILS_ID: `${TMDB_BASE_URL}/tv`,
-//   FLUSONIC_STREAMS: 'http://117.216.44.13:8080/flussonic/api/v3/streams/',
-// };
+};
 
 const HEADERS = {
   CONTENT_TYPE: 'Content-Type',
   MULTIPART: 'multipart/form-data',
 };
 
-export { API_ENDPOINTS, HEADERS, TMDB_API_KEY };
+export { API_ENDPOINTS, HEADERS };

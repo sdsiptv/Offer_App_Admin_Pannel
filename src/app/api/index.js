@@ -133,6 +133,15 @@ const apis = {
     return API.get(API_ENDPOINTS.GET_REJECTED_VENDOR);
   },
 
+  //--------------- ADD VENDOR PUSH NOTIFICATION --------------//
+
+
+  addVendorPushNotification: formData => {
+    return API.post(API_ENDPOINTS.POST_VENDOR_PUSH_NOTIFICATION, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
   //--------------- ACCEPT & REJECT & Retrieve--------------//
 
   addAcceptVendors: (vendor_id) => {
@@ -263,7 +272,33 @@ const apis = {
     return API.put(API_ENDPOINTS.UNBLOCK_USERS + "/" + vendor_id)
   },
 
-  
+  //--------------- EVENTS --------------//
+
+  getEvents: () => {
+    return API.get(API_ENDPOINTS.GET_EVENTS);
+  },
+
+  addEvents: formData => {
+    return API.post(API_ENDPOINTS.POST_EVENTS, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  editEvents: (id, formData) => {
+    return API.put(API_ENDPOINTS.EDIT_EVENTS + '/' + id, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  deleteEvents: id => {
+    return API.delete(
+      API_ENDPOINTS.DELETE_EVENTS + '/' + id,
+      {
+        [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+      },
+    );
+  },
+
 };
 
 export default apis;

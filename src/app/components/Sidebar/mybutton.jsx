@@ -6,7 +6,7 @@ import TvIcon from '@material-ui/icons/Tv';
 import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
 import PriorityHighRoundedIcon from '@material-ui/icons/PriorityHighRounded';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-
+import EventSeatIcon from '@material-ui/icons/EventSeat';
 
 import LineStyleIcon from '@material-ui/icons/LineStyle';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
@@ -41,8 +41,8 @@ const Mybutton = props => {
           <LocalOfferIcon style={{ color: '#DC7633' }} />
         ) : props.label === 'Users' ? (
           <PersonPinCircleIcon style={{ color: '#DC7633' }} />
-        ) : props.label === 'Series On Demand' ? (
-          <TvIcon style={{ color: '#DC7633' }} />
+        ) : props.label === 'Events' ? (
+          <EventSeatIcon style={{ color: '#DC7633' }} />
         ) : props.label === 'Music On Demand' ? (
           <MusicVideoIcon style={{ color: '#DC7633' }} />
         ) : props.label === 'App TV' ? (

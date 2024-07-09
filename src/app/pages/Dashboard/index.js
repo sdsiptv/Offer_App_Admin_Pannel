@@ -191,13 +191,15 @@ function Dashboard() {
 
             <Grid item xs={9}>
               <Paper className={classes.Feedback}  >
-                <div style={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
+                <div  className={classes.chartHeader}>
                   <text style={{ fontSize: "27px" }}>Active user Deactive user</text>
+                  <div className={classes.chartButtons}>
                   <Button className={classes.Buttonsmall}>All</Button>
                   <Button className={classes.Buttonsmall}>1M</Button>
                   <Button className={classes.Buttonsmall}>6M</Button>
                   <Button className={classes.Buttonsmall}>1Y</Button>
                   <Button className={classes.Buttonsmall}>YTD</Button>
+                  </div>
                 </div>
                 <img src={Graph} width="100%"></img>
               </Paper>
