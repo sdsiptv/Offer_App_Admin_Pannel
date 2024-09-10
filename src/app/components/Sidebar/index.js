@@ -84,6 +84,7 @@ export default function Sidebar() {
           >
             {[
               { name: 'Admin SignUp', link: '/AdminSignUp' },
+              { name: 'Subscription', link: '/Subscription' },
               { name: 'Category', link: '/ListCategory' },
               { name: 'States', link: '/ListStates' },
               { name: 'District', link: '/ListDistrict' },
@@ -120,6 +121,7 @@ export default function Sidebar() {
               { name: 'Reject Vendors', link: '/ListRejectedVendors' },
               { name: 'Vendors Level', link: '/ListRejectedVendors' },
               { name: 'Vendor Push Notification', link: '/AddVendorPushNotification' },
+              { name: 'Vendor Subscription', link: '/VendorSubscription' },
             ].map((value, index) => {
               return (
                 <ListItem
@@ -177,7 +179,7 @@ export default function Sidebar() {
             {[
               { name: 'Show Users', link: '/ViewUsers' },
               { name: 'BlockList Users', link: '/ViewBlockListUsers' },
-              { name: 'User Push Notification', link: '/ViewOfferTags' },
+              { name: 'User Push Notification', link: '/AddUserPushNotification' },
             ].map((value, index) => {
               return (
                 <ListItem

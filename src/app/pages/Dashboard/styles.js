@@ -1,24 +1,20 @@
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper_main: {
-    // marginTop: theme.spacing(0),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: "#EFF3FD",
-    paddingTop: "18px"
+    backgroundColor: '#EFF3FD',
+    paddingTop: '18px',
   },
 
   paper: {
-    //padding: theme.spacing(3),
-    display: '-webkit-box',
-    overflow: 'auto',
+    display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'white',
-    borderRadius: "10px",
-    // borderColor:""
-    //alignItems: 'center',
+    borderRadius: '10px',
+    overflow: 'auto',
   },
 
   title: {
@@ -29,38 +25,6 @@ const useStyles = makeStyles(theme => ({
     padding: 10,
   },
 
-  text: {
-    fontSize: 24,
-  },
-
-  total: {
-    color: "#333333",
-  },
-
-  users: {
-    color: "#5a55d2"
-  },
-
-  DivDonor: {
-    padding: "10px",
-  },
-  
-  Blood: {
-    fontSize: 24,
-    color: "#333333",
-    marginTop: "5px",
-  },
-
-  Donor: {
-    fontSize: 24,
-    color: "#5a55d2",
-    marginTop: "5px",
-  },
-
-  Totaldonor: {
-    color: "#00EAAC",
-    marginTop: "5px",
-  },
   img: {
     width: "118px",
     height: "57px",
@@ -69,6 +33,94 @@ const useStyles = makeStyles(theme => ({
   img2: {
     width: "97px",
     height: "57px",
+  },
+
+  text: {
+    fontSize: 24,
+  },
+
+  total: {
+    color: '#333333',
+  },
+
+  users: {
+    color: '#5a55d2',
+  },
+
+  divDonor: {
+    padding: '10px',
+    [theme.breakpoints.down('xs')]: {
+      textAlign: 'left',
+    },
+  },
+
+  blood: {
+    fontSize: 24,
+    color: '#333333',
+    marginTop: '5px',
+  },
+
+  donor: {
+    fontSize: 24,
+    color: '#5a55d2',
+    marginTop: '5px',
+  },
+
+  totalDonor: {
+    color: '#00EAAC',
+    marginTop: '5px',
+  },
+
+  icon: {
+    width: '45px',
+    [theme.breakpoints.down('xs')]: {
+      width: '35px',
+    },
+  },
+
+  donorInfo: {
+    display: 'flex',
+    justifyContent: 'left',
+    alignItems: 'left',
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'center',
+      flexDirection: 'row',
+    },
+  },
+
+  donorDetails: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: '10px',
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'center',
+      marginTop: '5px',
+    },
+  },
+
+  donorCount: {
+    fontSize: '24px',
+    marginLeft: '15px',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+      marginLeft: '10px',
+    },
+  },
+
+  divider: {
+    margin: '10px 0',
+    [theme.breakpoints.down('xs')]: {
+      margin: '5px 0',
+    },
+  },
+
+  feedback: {
+    fontSize: 24,
+    color: "#00261C",
+    fontWeight: 400,
+    marginTop: "19px",
+    borderRadius: "10px",
+    padding: theme.spacing(2),
   },
 
   chartHeader: {
@@ -82,33 +134,7 @@ const useStyles = makeStyles(theme => ({
     gap: theme.spacing(1),
   },
 
-  Feedback: {
-    fontSize: 24,
-    color: "#00261C",
-    fontWeight: 400,
-    marginTop: "19px",
-    borderRadius: "10px",
-    padding: theme.spacing(2),
-
-  },
-
-  FeedbackBlood: {
-    fontSize: 21,
-    color: "#00261C",
-    fontWeight: 400,
-    marginTop: "19px",
-    borderRadius: "10px"
-  },
-
-  Button: {
-    backgroundColor: "#B9FFEC",
-    borderRadius: "12px",
-    '&:hover': {
-      backgroundColor: "#00DEA3",
-    },
-  },
-
-  Buttonsmall: {
+  buttonSmall: {
     backgroundColor: "#FFFFFF",
     borderRadius: "24px",
     outline: "auto",
@@ -119,28 +145,18 @@ const useStyles = makeStyles(theme => ({
     },
   },
 
-  Admin: {
-    marginTop: "10px",
-    backgroundColor: "#C2B2E7",
-    borderRadius: "8px",
-    paddingTop: "10px",
-    padding: "10px",
-  },
-
-  Download: {
-    marginTop: "10px",
-    backgroundColor: "#B9FFEC",
-    borderRadius: "8px",
-    paddingTop: "10px",
-    padding: "10px",
-  },
-
-  FeedbackAdmin: {
-    marginTop: "19px",
-    borderRadius: "10px",
-    padding: "10px",
-    
+  feedbackBlood: {
+    fontSize: 21,
+    color: '#00261C',
+    fontWeight: 400,
+    marginTop: '19px',
+    borderRadius: '10px',
+    padding: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      width: '40%',
+    },
   },
 
 }));
+
 export default useStyles;

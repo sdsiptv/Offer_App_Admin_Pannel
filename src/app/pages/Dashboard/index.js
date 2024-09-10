@@ -105,7 +105,7 @@ function Dashboard() {
     { name: 'Suspended Customer', user: sus_cus },
     { name: 'BlackListed Customer', user: black_cus },
   ];
-  
+
   const data_pie = [
     { name: 'Total Channel', value: total_cha },
     { name: 'VOD', value: vod },
@@ -136,7 +136,7 @@ function Dashboard() {
                   <text className={classes.text}>200</text>
                 </div>
                 <div>
-                  <img className={classes.img} src={Yes} style={{ marginTop: "80px", marginLeft: "-11px" }} width="100px"></img>
+                  <img className={classes.img} src={Yes} style={{ marginLeft: "50%" }} width="100px"></img>
                 </div>
               </Paper>
             </ResponsiveContainer>
@@ -152,7 +152,7 @@ function Dashboard() {
                   <text className={classes.text}>800</text>
                 </div>
                 <div>
-                  <img className={classes.img} src={Growth} style={{ marginTop: "80px", marginLeft: "18px" }} width="100px"></img>
+                  <img className={classes.img} src={Growth} style={{ marginLeft: "50%" }} width="100px"></img>
                 </div>
               </Paper>
             </ResponsiveContainer>
@@ -168,7 +168,7 @@ function Dashboard() {
                   <text className={classes.text}>400</text>
                 </div>
                 <div>
-                  <img className={classes.img} src={Yes} style={{ marginTop: "80px", marginLeft: "18px" }} width="100px"></img>
+                  <img className={classes.img} src={Yes} style={{ marginLeft: "50%" }} width="100px"></img>
                 </div>
               </Paper>
             </ResponsiveContainer>
@@ -184,68 +184,79 @@ function Dashboard() {
                   <text className={classes.text}>100</text>
                 </div>
                 <div>
-                  <img className={classes.img2} src={Yes} style={{ marginTop: "80px", marginLeft: "18px" }} width="100px"></img>
+                  <img className={classes.img2} src={Yes} style={{ marginLeft: "50%" }} width="100px"></img>
                 </div>
               </Paper>
             </ResponsiveContainer>
 
-            <Grid item xs={9}>
+            <Grid item xs={12} md={9}>
+              <Paper className={classes.feedback}>
+                <div className={classes.chartHeader}>
+                  <text style={{ fontSize: '27px' }}>Active user Deactive user</text>
+                  <div className={classes.chartButtons}>
+                    <Button className={classes.buttonSmall}>All</Button>
+                    <Button className={classes.buttonSmall}>1M</Button>
+                    <Button className={classes.buttonSmall}>6M</Button>
+                    <Button className={classes.buttonSmall}>1Y</Button>
+                    <Button className={classes.buttonSmall}>YTD</Button>
+                  </div>
+                </div>
+                <img src={Graph} className={classes.chartImage} alt="Graph" />
+              </Paper>
+            </Grid>
+
+            {/* <Grid item xs={9}>
               <Paper className={classes.Feedback}  >
-                <div  className={classes.chartHeader}>
+                <div className={classes.chartHeader}>
                   <text style={{ fontSize: "27px" }}>Active user Deactive user</text>
                   <div className={classes.chartButtons}>
-                  <Button className={classes.Buttonsmall}>All</Button>
-                  <Button className={classes.Buttonsmall}>1M</Button>
-                  <Button className={classes.Buttonsmall}>6M</Button>
-                  <Button className={classes.Buttonsmall}>1Y</Button>
-                  <Button className={classes.Buttonsmall}>YTD</Button>
+                    <Button className={classes.Buttonsmall}>All</Button>
+                    <Button className={classes.Buttonsmall}>1M</Button>
+                    <Button className={classes.Buttonsmall}>6M</Button>
+                    <Button className={classes.Buttonsmall}>1Y</Button>
+                    <Button className={classes.Buttonsmall}>YTD</Button>
                   </div>
                 </div>
                 <img src={Graph} width="100%"></img>
               </Paper>
-            </Grid>
+            </Grid> */}
 
-            <Grid item xs={3}>
-              <Paper className={classes.FeedbackBlood}>
-                <div className={classes.DivDonor}>
-                  <text className={classes.Blood}>Total</text>
-                  <text style={{ marginLeft: "4px" }} className={classes.Donor}> Verified</text>
-                  <div>
-                    {/* <text className={classes.Totaldonor}>Total Donor</text> */}
+            <Grid item xs={12} md={3}>
+              <Paper className={classes.feedbackBlood}>
+                <div className={classes.divDonor}>
+                  <div className={classes.donorInfo}>
+                    <text className={classes.blood}>Total</text>
+                    <text className={classes.donor} style={{ marginLeft: "4px" }}> Verified</text>
                   </div>
-                  <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-                    <img src={Blood} style={{width:"45px"}}></img>
-                    <text style={{ fontSize: "24px", marginTop: "18px", marginLeft: "15px" }}>978</text>
-                  </div>
-                </div>
-
-                <br />
-                <Divider />
-
-                <div className={classes.DivDonor}>
-                  <text className={classes.Blood}>Total</text>
-                  <text style={{ marginLeft: "4px" }} className={classes.Donor}> Unverified</text>
-                  <div>
-                    {/* <text className={classes.Totaldonor}>Total Shareing</text> */}
-                  </div>
-                  <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-                    <img src={Eco} style={{width:"40px"}}></img>
-                    <text style={{ fontSize: "24px", marginTop: "18px", marginLeft: "15px" }}>978</text>
+                  <div className={classes.donorDetails}>
+                    <img src={Blood} className={classes.icon} alt="Blood Icon" />
+                    <text className={classes.donorCount}>978</text>
                   </div>
                 </div>
 
-                <br />
-                <Divider />
+                <Divider className={classes.divider} />
 
-                <div className={classes.DivDonor} style={{paddingBottom:"5px"}}>
-                  <text className={classes.Blood}>Total</text>
-                  <text style={{ marginLeft: "4px" }} className={classes.Donor}> Reject</text>
-                  <div>
-                    {/* <text className={classes.Totaldonor}>Total Reports</text> */}
+                <div className={classes.divDonor}>
+                  <div className={classes.donorInfo}>
+                    <text className={classes.blood}>Total</text>
+                    <text className={classes.donor} style={{ marginLeft: "4px" }}> Unverified</text>
                   </div>
-                  <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-                    <img src={Message} style={{width:"45px"}}></img>
-                    <text style={{ fontSize: "24px", marginTop: "18px", marginLeft: "15px" }}>978</text>
+                  <div className={classes.donorDetails}>
+                    <img src={Eco} className={classes.icon} alt="Eco Icon" />
+                    <text className={classes.donorCount}>978</text>
+                  </div>
+                </div>
+
+                <Divider className={classes.divider} />
+
+                <div className={classes.divDonor}>
+                  <div className={classes.donorInfo}>
+                    <text className={classes.blood}>Total</text>
+                    <text className={classes.donor} style={{ marginLeft: "4px" }}> Reject</text>
+                  </div>
+                  <div className={classes.donorDetails}>
+                    <img src={Message} className={classes.icon} alt="Message Icon" />
+                    <text className={classes.donorCount}>978</text>
                   </div>
                 </div>
               </Paper>

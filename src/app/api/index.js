@@ -133,11 +133,42 @@ const apis = {
     return API.get(API_ENDPOINTS.GET_REJECTED_VENDOR);
   },
 
+  // --------------SUBSCRITION-------------- //
+
+  getSubscription: () => {
+    return API.get(API_ENDPOINTS.GET_SUBSCRIPTION);
+  },
+
+  PutSubscripton: (subscription_type,
+    followers,
+    notification,
+    following_advanced,
+    statistics_advanced,
+    offer_count) => {
+    return API.put(API_ENDPOINTS.PUT_SUBSCRIPTION, {
+      subscription_type: subscription_type,
+      followers: followers,
+      notification: notification,
+      following_advanced: following_advanced,
+      statistics_advanced: statistics_advanced,
+      offer_count: offer_count,
+    });
+  },
+
   //--------------- ADD VENDOR PUSH NOTIFICATION --------------//
 
 
   addVendorPushNotification: formData => {
     return API.post(API_ENDPOINTS.POST_VENDOR_PUSH_NOTIFICATION, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  //--------------- ADD USER PUSH NOTIFICATION --------------//
+
+
+  addUserPushNotification: formData => {
+    return API.post(API_ENDPOINTS.POST_USER_PUSH_NOTIFICATION, formData, {
       [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
     });
   },
@@ -179,8 +210,8 @@ const apis = {
 
   //--------------- PRODUCT TAGS --------------//
 
-  getProductTags: () => {
-    return API.get(API_ENDPOINTS.GET_PRODUCT_TAGS);
+  getProductTags: (id) => {
+    return API.get(API_ENDPOINTS.GET_PRODUCT_TAGS + "/" + id);
   },
 
   addProductTags: formData => {
@@ -298,6 +329,33 @@ const apis = {
       },
     );
   },
+
+  //--------------- EVENTS --------------//
+
+  // addVendorSubscription: (id, formData) => {
+  //   return API.post(API_ENDPOINTS.POST_VENDOR_SUBSCRIPTION + "/" + id, formData, {
+  //     [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+  //   });
+  // },
+
+  // addVendorSubscription: (id, formData) => {
+  //   return API.post(API_ENDPOINTS.POST_VENDOR_SUBSCRIPTION + "/" + id, formData, {
+  //     [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+  //   });
+  // },
+
+  addVendorSubscription: formData => {
+    return API.post(API_ENDPOINTS.POST_VENDOR_SUBSCRIPTION, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+  // addVendorSubscription: (id, subscription) => {
+  //   return API.post(API_ENDPOINTS.POST_VENDOR_SUBSCRIPTION + "/" + id,
+  //     {
+  //       subscription: subscription,
+  //     }
+  //   )
+  // },
 
 };
 

@@ -48,6 +48,9 @@ import ListBlocklistUsers from './pages/Users/BlockListUsers';
 import AddVendorPushNotification from './pages/Vendors/VendorPushNotification/AddVendorPushNotification';
 import ListEvents from './pages/Events/ListEvents';
 import AddEditEvents from './pages/Events/AddEditEvents/AddEditEvents';
+import AddUserPushNotification from './pages/Users/UserPushNotification/AddUserPushNotification';
+import Subscription from './pages/Subscription/Subscription';
+import AddVendorSubscription from './pages/VendorSubscription/VendorSubscription';
 
 
 export function App() {
@@ -81,6 +84,7 @@ export function App() {
           <PrivateRoute path="/navbar" component={Navbar} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/AdminSignUp" component={AddAdminSignUp} />
+          <PrivateRoute path="/Subscription" component={Subscription} />
 
           {/*----------- CATEGORY ------------*/}
 
@@ -177,6 +181,11 @@ export function App() {
             component={AddVendorPushNotification}
           />
 
+          <PrivateRoute
+            path="/VendorSubscription"
+            component={AddVendorSubscription}
+          />
+
           {/*----------- OFFER TAGS ------------*/}
 
           <PrivateRoute
@@ -254,6 +263,11 @@ export function App() {
           <PrivateRoute
             path="/ViewBlockListUsers"
             component={ListBlocklistUsers}
+          />
+
+          <PrivateRoute
+            path="/AddUserPushNotification"
+            component={AddUserPushNotification}
           />
 
           {/*----------- EVENTS ------------*/}

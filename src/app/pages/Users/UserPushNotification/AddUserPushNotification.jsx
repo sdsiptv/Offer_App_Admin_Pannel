@@ -22,7 +22,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const roles = ['1', '2'];
 
-export default function AddVendorPushNotification() {
+export default function AddUserPushNotification() {
     const hiddenFileInput1 = React.useRef(null);
     const hiddenFileInput2 = React.useRef(null);
     const history = useHistory();
@@ -37,7 +37,7 @@ export default function AddVendorPushNotification() {
     const [UseState, setUseState] = useState(false);
     const [UseDistrict, setUseDistrict] = useState(false);
     const [UseCity, setUseCity] = useState(false);
-    const [Vendor, setVendor] = useState(false);
+    const [User, setUser] = useState(false);
     const [customerData, setCustomerData] = useState([]);
     const [userIds, setUserId] = useState(null);
     const [imageObj1, setImageObj1] = useState(undefined);
@@ -101,7 +101,7 @@ export default function AddVendorPushNotification() {
     };
 
     const handleGetCustomer = () => {
-        apis.getAllVendors().then(res => {
+        apis.getAllUsers().then(res => {
             setCustomerData(res.data);
         });
     };
@@ -118,7 +118,7 @@ export default function AddVendorPushNotification() {
         setUseState(checkbox === 'state');
         setUseDistrict(checkbox === 'district');
         setUseCity(checkbox === 'city');
-        setVendor(checkbox === 'vendor');
+        setUser(checkbox === 'user');
     };
 
     const onSubmit = async ({
@@ -129,16 +129,15 @@ export default function AddVendorPushNotification() {
         if (UseState) data.append('state', selectedState);
         if (UseDistrict) data.append('district', selectedDistrict);
         if (UseCity) data.append('city', selectedCity);
-        if (Vendor) data.append('vendor', userIds);
+        if (User) data.append('user', userIds);
         data.append('message', message);
         data.append('title', title);
         data.append('type', role);
-        // data.append('vendor', userIds);
         data.append('banners', imageObj1);
         data.append('icon', imageObj2);
 
         try {
-            const res = await apis.addVendorPushNotification(data);
+            const res = await apis.addUserPushNotification(data);
             toast.success('Successfully Added', { duration: 5000 });
             history.push('/dashboard');
         } catch (error) {
@@ -162,7 +161,7 @@ export default function AddVendorPushNotification() {
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Typography component="h1" variant="h5" className={classes.title}>
-                                    VENDOR PUSH NOTIFICATION
+                                    USER PUSH NOTIFICATION
                                 </Typography>
                             </Grid>
 
@@ -291,11 +290,11 @@ export default function AddVendorPushNotification() {
 
                                     <Grid item xs={4}>
                                         <FormControlLabel
-                                            label="Vendors"
+                                            label="Users"
                                             control={
                                                 <Checkbox
-                                                    checked={Vendor}
-                                                    onChange={() => handleCheckboxChange('vendor')}
+                                                    checked={User}
+                                                    onChange={() => handleCheckboxChange('user')}
                                                     style={{ color: "#673ab7" }}
                                                 />
                                             }
@@ -304,9 +303,9 @@ export default function AddVendorPushNotification() {
 
                                     <Grid item xs={8}>
                                         <Autocomplete
-                                            id="Vendor_id"
+                                            id="user_id"
                                             options={customerData}
-                                            getOptionLabel={option => option?.id + ' - ' + option?.shop_name}
+                                            getOptionLabel={option => option?.id + ' - ' + option?.fullname}
                                             onChange={(event, newValue) => {
                                                 if (newValue) {
                                                     setUserId(newValue.id);
@@ -314,12 +313,12 @@ export default function AddVendorPushNotification() {
                                                     setUserId(null);
                                                 }
                                             }}
-                                            renderInput={params => ( 
+                                            renderInput={params => (
                                                 <TextField
                                                     {...params}
-                                                    label="Vendor"
+                                                    label="Customer"
                                                     variant="outlined"
-                                                    helperText="Please select your Vendor"
+                                                    helperText="Please select your Customer"
                                                     autoFocus
                                                 />
                                             )}

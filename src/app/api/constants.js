@@ -1,9 +1,9 @@
 // const { BASE_URL } = process.env;
 
 // const BASE_URL = 'http://localhost:3001';
-const BASE_URL = 'http://192.168.1.14:3000';
-// const BASE_URL = 'https://iptv.skylink.net.in/apis';
-// const BASE_URL = 'https://192.168.1.11/offerapp';
+// const BASE_URL = 'http://192.168.1.3:3000';
+const BASE_URL = 'https://192.168.1.11/offerapp';
+// const BASE_URL = 'https://103.219.207.71/offerapp';
 
 const API_ENDPOINTS = {
   LOGIN: `${BASE_URL}/api/adminlogin`,
@@ -44,7 +44,12 @@ const API_ENDPOINTS = {
   GET_PENDING_VENDOR: `${BASE_URL}/api/vendor/pendingVendorList`,
   GET_REJECTED_VENDOR: `${BASE_URL}/api/vendor/rejectedVendorList`,
 
+  GET_SUBSCRIPTION:`${BASE_URL}/api/subscription`,
+  PUT_SUBSCRIPTION:`${BASE_URL}/api/subscription`,
+
+
   POST_VENDOR_PUSH_NOTIFICATION: `${BASE_URL}/api/notification`,
+  POST_USER_PUSH_NOTIFICATION: `${BASE_URL}/api/usernotification`,
 
   GET_OFFER_TAGS: `${BASE_URL}/api/offerTags`,
   POST_OFFER_TAGS: `${BASE_URL}/api/offerTags/insert`,
@@ -76,6 +81,8 @@ const API_ENDPOINTS = {
   POST_EVENTS: `${BASE_URL}/api/event/insert`,
   EDIT_EVENTS: `${BASE_URL}/api/event/update`,
   DELETE_EVENTS: `${BASE_URL}/api/event/delete`,
+
+  POST_VENDOR_SUBSCRIPTION: `${BASE_URL}/api/vendor/subscription`,
 
 };
 
