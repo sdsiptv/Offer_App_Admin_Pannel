@@ -10,77 +10,62 @@ import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
 
-export default function ViewListCategory() {
+export default function ListAdvertisement() {
   const classes = useStyles();
   const history = useHistory();
-  const [Category, setCategory] = useState([]);
+  const [Advertisement, setAdvertisement] = useState([]);
 
   const columns = [
     {
       field: 'images',
-      title: 'Logo',
+      title: 'Images',
       render: rowData =>
-        typeof rowData.images == 'string' ? (
-          <img src={rowData.images} alt="" width={40} height={30} />
+        typeof rowData.logo == 'string' ? (
+          <img src={rowData.logo} alt="" width={40} height={30} />
         ) : null,
     },
-    { field: 'id', title: 'Category ID' },
-    { field: 'name', title: 'Name' },
     { field: 'position', title: 'Position' },
-    {
-      field: 'actions',
-      title: 'Actions',
-      sorting: false,
-      render: rowData => (
-        <Tooltip title="Edit">
-          <IconButton
-            variant="contained"
-            size="small"
-            color="secondary"
-            onClick={() => {
-              history.push('EditCategory', {
-                state: { data: rowData },
-              });
-            }}
-          >
-            <EditIcon />
-          </IconButton>
-        </Tooltip>
-      ),
-    },
+    // {
+    //   field: 'actions',
+    //   title: 'Actions',
+    //   sorting: false,
+    //   render: rowData => (
+    //     <Tooltip title="Edit">
+    //       <IconButton
+    //         variant="contained"
+    //         size="small"
+    //         color="secondary"
+    //         onClick={() => {
+    //           history.push('EditPopularTVProviders', {
+    //             state: { data: rowData },
+    //           });
+    //         }}
+    //       >
+    //         <EditIcon />
+    //       </IconButton>
+    //     </Tooltip>
+    //   ),
+    // },
   ];
 
-  const getCategory = () => {
-    apis.getCategory().then(res => {
-      console.log('hii', res?.data)
-      setCategory(res?.data);
+  const getAdvertisement = () => {
+    apis.getAdvertisement().then(res => {
+      setAdvertisement(res?.data);
     });
   };
 
   useEffect(() => {
-    getCategory();
+    getAdvertisement();
   }, []);
 
-  // const deleteHandler = data => {
-  //   let filter = data.map(obj => obj.id);
-  //   apis.deleteCategory(JSON.stringify(filter)).then(res => {
-  //     toastMessage('Successfully deleted');
-  //     getCategory();
-  //   });
-  // };
-
   const deleteHandler = data => {
-    let filter = data.map(obj => obj.id);
-    if (filter.length === 0) {
-      console.log("No IDs to delete");
-      return;
-    }
-    let idToDelete = filter[0];
-    apis.deleteCategory(idToDelete).then(res => {
-      toastMessage('Successfully Deleted');
-      getCategory();
+    let filter = data[0]?.id;
+    apis.deleteAdvertisement(filter).then(res => {
+      toastMessage('Successfully deleted');
+      getAdvertisement();
     });
   };
+  
 
   return (
     <Container component="main" maxWidth="lg">
@@ -96,24 +81,26 @@ export default function ViewListCategory() {
                 variant="contained"
                 style={{ backgroundColor: GREEN }}
                 onClick={() => {
-                  history.push('/AddCategory');
+                  history.push('/AddAdvertisement');
                 }}
               >
-                Add Category
+                Add Advertisement
               </Button>
             </div>
           </Grid>
 
           <Grid item xs={12}>
             <MaterialTables
-              title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>PRODUCT CATEGORY</span>}
+              title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>ADVERTISEMENT</span>}
               columns={columns}
-              data={Category}
+              data={Advertisement}
               deleteHandler={deleteHandler}
             />
           </Grid>
         </Grid>
       </div>
+
+
     </Container>
   );
 }

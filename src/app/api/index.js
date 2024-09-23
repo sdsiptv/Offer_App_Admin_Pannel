@@ -51,6 +51,29 @@ const apis = {
     );
   },
 
+  //--------------- ADVERTISEMENT -----------------//
+
+  getAdvertisement: () => {
+    return API.get(API_ENDPOINTS.GET_ADVERTISEMENT);
+  },
+
+  addAdvertisement: formData => {
+    return API.post(API_ENDPOINTS.ADD_ADVERTISEMENT, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  deleteAdvertisement: (id) => {
+    return API.delete(API_ENDPOINTS.DELETE_ADVERTISEMENT + "/" + id, {
+    });
+  },
+
+  // deleteAdvertisement: id => {
+  //   return API.delete(
+  //     API_ENDPOINTS.DELETE_ADVERTISEMENT + '/' + id,
+  //   );
+  // },
+
   //--------------- STATES --------------//
 
   getState: () => {

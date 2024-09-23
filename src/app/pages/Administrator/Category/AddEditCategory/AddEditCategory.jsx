@@ -90,7 +90,7 @@ export default function AddEditCategory({ pageMode = 'add' }) {
                 {...register('name', { required: true })}
               />
             </Grid>
-            {/* <Grid item xs={12}>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -102,7 +102,7 @@ export default function AddEditCategory({ pageMode = 'add' }) {
                 id="position"
                 {...register('position', { required: true })}
               />
-            </Grid> */}
+            </Grid>
 
             <Grid item xs={6}>
               <div style={{ display: 'flex' }}>

@@ -21,6 +21,7 @@ export default function ViewProductTags() {
 
   const columns = [
     { field: 'name', title: 'Vendor Tags' },
+    { field: 'id', title: 'Vendor ID' },
     {
       field: 'actions',
       title: 'Actions',

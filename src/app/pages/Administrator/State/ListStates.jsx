@@ -17,6 +17,7 @@ export default function ViewListStates() {
 
     const columns = [
         { field: 'state_name', title: 'State Name' },
+        { field: 'id', title: 'State ID' },
         {
             field: 'actions',
             title: 'Actions',

@@ -86,6 +86,7 @@ export default function Sidebar() {
               { name: 'Admin SignUp', link: '/AdminSignUp' },
               { name: 'Subscription', link: '/Subscription' },
               { name: 'Category', link: '/ListCategory' },
+              { name: 'Advertisement', link: '/advertisement' },
               { name: 'States', link: '/ListStates' },
               { name: 'District', link: '/ListDistrict' },
               { name: 'City', link: '/ListCity' },
@@ -119,7 +120,7 @@ export default function Sidebar() {
               { name: 'Pending Vendors', link: '/ListPendingVendors' },
               { name: 'Verifed Vendors', link: '/ListVerifiedVendors' },
               { name: 'Reject Vendors', link: '/ListRejectedVendors' },
-              { name: 'Vendors Level', link: '/ListRejectedVendors' },
+              // { name: 'Vendors Level', link: '/ListRejectedVendors' },
               { name: 'Vendor Push Notification', link: '/AddVendorPushNotification' },
               { name: 'Vendor Subscription', link: '/VendorSubscription' },
             ].map((value, index) => {

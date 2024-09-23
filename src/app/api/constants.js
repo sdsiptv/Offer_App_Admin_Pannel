@@ -20,6 +20,10 @@ const API_ENDPOINTS = {
   GET_CATEGORY: `${BASE_URL}/api/category`,
   DELETE_CATEGORY: `${BASE_URL}/api/category/delete`,
 
+  ADD_ADVERTISEMENT: `${BASE_URL}/api/ads`,
+  GET_ADVERTISEMENT: `${BASE_URL}/api/ads`,
+  DELETE_ADVERTISEMENT: `${BASE_URL}/api/ads/delete`,
+
   ADD_STATE: `${BASE_URL}/api/state`,
   GET_STATE: `${BASE_URL}/api/state`,
   EDIT_STATE: `${BASE_URL}/api/state`,

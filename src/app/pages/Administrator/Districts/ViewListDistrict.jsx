@@ -22,6 +22,8 @@ export default function ViewListDistrict() {
 
     const columns = [
         { field: 'district_name', title: 'district_name' },
+        { field: 'id', title: 'District ID' },
+
         {
             field: 'actions',
             title: 'Actions',

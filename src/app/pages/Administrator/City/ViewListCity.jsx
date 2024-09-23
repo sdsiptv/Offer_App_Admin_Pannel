@@ -22,7 +22,7 @@ export default function ViewListCity() {
 
     const columns = [
         { field: 'city_name', title: 'city_name' },
-        // { field: 'position', title: 'Position' },
+        { field: 'id', title: 'City ID' },
         {
             field: 'actions',
             title: 'Actions',

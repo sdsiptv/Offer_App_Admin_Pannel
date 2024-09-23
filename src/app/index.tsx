@@ -51,6 +51,8 @@ import AddEditEvents from './pages/Events/AddEditEvents/AddEditEvents';
 import AddUserPushNotification from './pages/Users/UserPushNotification/AddUserPushNotification';
 import Subscription from './pages/Subscription/Subscription';
 import AddVendorSubscription from './pages/VendorSubscription/VendorSubscription';
+import ListAdvertisement from './pages/Administrator/Advertisement/ListAdvertisement';
+import AddEditAdvertisement from './pages/Administrator/Advertisement/AddAdvertisement';
 
 
 export function App() {
@@ -84,7 +86,13 @@ export function App() {
           <PrivateRoute path="/navbar" component={Navbar} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/AdminSignUp" component={AddAdminSignUp} />
+          <PrivateRoute path="/Advertisement" component={ListAdvertisement} />
           <PrivateRoute path="/Subscription" component={Subscription} />
+          <PrivateRoute
+            path="/AddAdvertisement"
+            component={AddEditAdvertisement}
+            pageMode="add"
+          />
 
           {/*----------- CATEGORY ------------*/}
 

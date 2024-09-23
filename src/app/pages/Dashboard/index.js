@@ -49,6 +49,10 @@ import Growth from "../../assets/Growth.png";
 import Blood from "../../assets/approved.png";
 import Eco from "../../assets/waiting.png";
 import Message from "../../assets/rejected.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPeopleGroup, faArrowsDownToPeople, faStarOfDavid, faCircleExclamation, faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faShopify } from '@fortawesome/free-brands-svg-icons';
+import { faFaceGrinHearts } from '@fortawesome/free-regular-svg-icons';
 
 const data_month_wise = [
   { name: 'JAN', au: 4, du: 2 },
@@ -128,7 +132,7 @@ function Dashboard() {
             <ResponsiveContainer width="22%" height="100%">
               <Paper className={classes.paper}>
                 <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
-                  <img src={Coins} width="30px"></img>
+                  <FontAwesomeIcon icon={faPeopleGroup} style={{ fontSize: "30px", color: "#dc7633" }} />
                   <div style={{ display: "flex" }}>
                     <text style={{ fontSize: "18", marginTop: "5px" }} className={classes.total}>TOTAL</text>
                     <text style={{ fontSize: "18", marginTop: "5px", marginLeft: "4px" }} className={classes.users}>CUSTOMERS</text>
@@ -144,7 +148,8 @@ function Dashboard() {
             <ResponsiveContainer width="24%" height="100%">
               <Paper className={classes.paper}>
                 <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
-                  <img src={Cashier} width="30px"></img>
+                  <FontAwesomeIcon icon={faShopify} style={{ fontSize: "30px", color: "#dc7633" }} />
+                  {/* <img src={Cashier} width="30px"></img> */}
                   <div style={{ display: "flex" }}>
                     <text style={{ fontSize: "18", marginTop: "5px" }} className={classes.total}>TOTAL</text>
                     <text style={{ fontSize: "18", marginTop: "5px", marginLeft: "4px" }} className={classes.users}> VENDORS</text>
@@ -160,7 +165,8 @@ function Dashboard() {
             <ResponsiveContainer width="25%" height="100%">
               <Paper className={classes.paper}>
                 <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
-                  <img src={Likes} width="30px"></img>
+                  <FontAwesomeIcon icon={faFaceGrinHearts} style={{ fontSize: "30px", color: "#dc7633" }} />
+                  {/* <img src={Likes} width="30px"></img> */}
                   <div style={{ display: "flex" }}>
                     <text style={{ fontSize: "18", marginTop: "5px" }} className={classes.total}>TOTAL</text>
                     <text style={{ fontSize: "18", marginTop: "5px", marginLeft: "4px" }} className={classes.users}> LIKES</text>
@@ -176,7 +182,8 @@ function Dashboard() {
             <ResponsiveContainer width="25%" height="100%">
               <Paper className={classes.paper}>
                 <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
-                  <img src={Download} width="30px"></img>
+                  <FontAwesomeIcon icon={faArrowsDownToPeople} style={{ fontSize: "30px", color: "#dc7633" }} />
+                  {/* <img src={Download} width="30px"></img> */}
                   <div style={{ display: "flex" }}>
                     <text style={{ fontSize: "18", marginTop: "5px" }} className={classes.total}>TOTAL</text>
                     <text style={{ fontSize: "18", marginTop: "5px", marginLeft: "4px" }} className={classes.users}> DOWNLOADS</text>
@@ -229,7 +236,8 @@ function Dashboard() {
                     <text className={classes.donor} style={{ marginLeft: "4px" }}> Verified</text>
                   </div>
                   <div className={classes.donorDetails}>
-                    <img src={Blood} className={classes.icon} alt="Blood Icon" />
+                    <FontAwesomeIcon icon={faStarOfDavid} style={{ color: "#dc7633" }} />
+                    {/* <img src={Blood} className={classes.icon} alt="Blood Icon" /> */}
                     <text className={classes.donorCount}>978</text>
                   </div>
                 </div>
@@ -242,7 +250,8 @@ function Dashboard() {
                     <text className={classes.donor} style={{ marginLeft: "4px" }}> Unverified</text>
                   </div>
                   <div className={classes.donorDetails}>
-                    <img src={Eco} className={classes.icon} alt="Eco Icon" />
+                    <FontAwesomeIcon icon={faCircleExclamation} style={{ fontSize: "25px", color: "#dc7633" }} />
+                    {/* <img src={Eco} className={classes.icon} alt="Eco Icon" /> */}
                     <text className={classes.donorCount}>978</text>
                   </div>
                 </div>
@@ -255,7 +264,8 @@ function Dashboard() {
                     <text className={classes.donor} style={{ marginLeft: "4px" }}> Reject</text>
                   </div>
                   <div className={classes.donorDetails}>
-                    <img src={Message} className={classes.icon} alt="Message Icon" />
+                    <FontAwesomeIcon icon={faRectangleXmark} style={{ fontSize: "25px", color: "#dc7633" }}/>
+                    {/* <img src={Message} className={classes.icon} alt="Message Icon" /> */}
                     <text className={classes.donorCount}>978</text>
                   </div>
                 </div>

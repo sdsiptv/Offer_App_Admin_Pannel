@@ -20,9 +20,14 @@ export default function ViewAllVendors() {
     const [openDialog, setOpenDialog] = useState(false);
 
     const columns = [
+        { field: 'id', title: 'Vendor ID' },
         { field: 'shop_name', title: 'Shop Name' },
         { field: 'emailid', title: 'EmailID' },
+        { field: 'category', title: 'category' },
         { field: 'mobile_no', title: 'Mobile Number' },
+        { field: 'state', title: 'state' },
+        { field: 'district', title: 'district' },
+        { field: 'city', title: 'city' },
         {
             field: 'createdAt',
             title: 'Created At',
@@ -82,26 +87,26 @@ export default function ViewAllVendors() {
                 </Grid>
             </div>
             <Dialog open={openDialog} onClose={handleCloseDialog}>
-                <DialogTitle style={{ fontSize: "20px", color: "#E74C3C",textAlign:"center" }}>VENDOR DETAILS</DialogTitle>
+                <DialogTitle style={{ fontSize: "20px", color: "#E74C3C", textAlign: "center" }}>VENDOR DETAILS</DialogTitle>
                 <DialogContent>
                     {selectedVendor && (
                         <TableContainer>
                             <Table>
                                 <TableBody>
                                     <TableRow>
-                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000",fontWeight:"700" }}>Shop Name:</Typography></TableCell>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Shop Name:</Typography></TableCell>
                                         <TableCell style={{ fontSize: "18px" }}>{selectedVendor.shop_name}</TableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000",fontWeight:"700" }}>Email:</Typography></TableCell>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Email:</Typography></TableCell>
                                         <TableCell style={{ fontSize: "18px" }}>{selectedVendor.emailid}</TableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000",fontWeight:"700" }}>Mobile Number:</Typography></TableCell>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Mobile Number:</Typography></TableCell>
                                         <TableCell style={{ fontSize: "18px" }}>{selectedVendor.mobile_no}</TableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000",fontWeight:"700" }}>Created At:</Typography></TableCell>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Created At:</Typography></TableCell>
                                         <TableCell style={{ fontSize: "18px" }}>{moment(selectedVendor.createdAt).format('YYYY-MM-DD HH:MM')}</TableCell>
                                     </TableRow>
                                 </TableBody>
