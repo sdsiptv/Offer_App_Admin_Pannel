@@ -34,9 +34,9 @@ export default function ListUsers() {
         { field: 'emailid', title: 'EmailID' },
         { field: 'mobile_no', title: 'Mobile Number' },
         { field: 'address', title: 'Address' },
-        { field: 'state', title: 'state' },
-        { field: 'district', title: 'district' },
-        { field: 'city', title: 'city' },
+        { field: 'state_name', title: 'state' },
+        { field: 'district_name', title: 'district' },
+        { field: 'city_name', title: 'city' },
         {
             field: 'actions',
             title: 'View Users',
@@ -152,7 +152,7 @@ export default function ListUsers() {
             <CssBaseline />
             <div className={classes.paper}>
                 <Grid container spacing={1}>
-                    <Grid item xs={3}>
+                    {/* <Grid item xs={3}>
                         <TextField
                             id="filled-select-state"
                             select
@@ -228,7 +228,7 @@ export default function ListUsers() {
                             ))}
                         </TextField>
 
-                    </Grid>
+                    </Grid> */}
 
                     <Grid item xs={12}>
                         <DRMWaitListTable

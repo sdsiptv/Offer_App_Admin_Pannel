@@ -87,6 +87,7 @@ export default function Sidebar() {
               { name: 'Subscription', link: '/Subscription' },
               { name: 'Category', link: '/ListCategory' },
               { name: 'Advertisement', link: '/advertisement' },
+              { name: 'Quantity Types', link: '/ListQuantityTypes' },
               { name: 'States', link: '/ListStates' },
               { name: 'District', link: '/ListDistrict' },
               { name: 'City', link: '/ListCity' },

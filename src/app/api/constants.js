@@ -1,8 +1,8 @@
 // const { BASE_URL } = process.env;
 
 // const BASE_URL = 'http://localhost:3001';
-// const BASE_URL = 'http://192.168.1.3:3000';
-const BASE_URL = 'https://192.168.1.11/offerapp';
+const BASE_URL = 'http://192.168.1.4:3000';
+// const BASE_URL = 'https://192.168.1.11/offerapp';
 // const BASE_URL = 'https://103.219.207.71/offerapp';
 
 const API_ENDPOINTS = {
@@ -38,6 +38,11 @@ const API_ENDPOINTS = {
   GET_CITY: `${BASE_URL}/api/city`,
   EDIT_CITY: `${BASE_URL}/api/city`,
   DELETE_CITY: `${BASE_URL}/api/city`,
+
+  GET_QUANTITY_TYPES: `${BASE_URL}/api/quantityType`,
+  POST_QUANTITY_TYPES: `${BASE_URL}/api/quantityType/insert`,
+  EDIT_QUANTITY_TYPES: `${BASE_URL}/api/quantityType/update`,
+  DELETE_QUANTITY_TYPES: `${BASE_URL}/api/quantityType/delete`,
 
   ACCEPT_VENDORS: `${BASE_URL}/api/vendor/aproval`,
   REJECT_VENDORS: `${BASE_URL}/api/vendor/reject`,

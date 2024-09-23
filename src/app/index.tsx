@@ -53,6 +53,8 @@ import Subscription from './pages/Subscription/Subscription';
 import AddVendorSubscription from './pages/VendorSubscription/VendorSubscription';
 import ListAdvertisement from './pages/Administrator/Advertisement/ListAdvertisement';
 import AddEditAdvertisement from './pages/Administrator/Advertisement/AddAdvertisement';
+import ViewQuantityTypes from './pages/Administrator/QuantityTypes/ListQuantityTypes';
+import AddEditQuantityTypes from './pages/Administrator/QuantityTypes/AddEditQuantityTypes/AddEditQuantityTypes';
 
 
 export function App() {
@@ -161,6 +163,24 @@ export function App() {
             component={AddEditCity}
             pageMode="edit"
           />
+
+          {/*----------- QUANTITY TYPES ------------*/}
+
+          <PrivateRoute
+            path="/ListQuantityTypes"
+            component={ViewQuantityTypes}
+          />
+          <PrivateRoute
+            path="/AddQuantityTypes"
+            component={AddEditQuantityTypes}
+            pageMode="add"
+          />
+          <PrivateRoute
+            path="/EditQuantityTypes"
+            component={AddEditQuantityTypes}
+            pageMode="edit"
+          />
+
 
           {/*----------- VENDORS ------------*/}
 

@@ -25,9 +25,9 @@ export default function ViewAllVendors() {
         { field: 'emailid', title: 'EmailID' },
         { field: 'category', title: 'category' },
         { field: 'mobile_no', title: 'Mobile Number' },
-        { field: 'state', title: 'state' },
-        { field: 'district', title: 'district' },
-        { field: 'city', title: 'city' },
+        { field: 'state_name', title: 'state' },
+        { field: 'district_name', title: 'district' },
+        { field: 'city_name', title: 'city' },
         {
             field: 'createdAt',
             title: 'Created At',

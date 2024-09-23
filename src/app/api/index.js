@@ -138,6 +138,27 @@ const apis = {
     });
   },
 
+    //--------------- OUANTITY TYPES --------------//
+
+    getQuantityTypes: () => {
+      return API.get(API_ENDPOINTS.GET_QUANTITY_TYPES);
+    },
+  
+    addQuantityTypes: (name) => {
+      return API.post(API_ENDPOINTS.POST_QUANTITY_TYPES + "?name=" + name, {
+      });
+    },
+  
+    editQuantityTypes: (id, name) => {
+      return API.put(API_ENDPOINTS.EDIT_QUANTITY_TYPES + "?name=" + name + "&id=" + id, {
+      });
+    },
+  
+    deleteQuantityTypes: (id) => {
+      return API.delete(API_ENDPOINTS.DELETE_QUANTITY_TYPES + "?id=" + id, {
+      });
+    },
+
   //--------------- VENDORS --------------//
 
   getAllVendors: () => {
