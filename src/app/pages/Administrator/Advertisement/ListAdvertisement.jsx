@@ -20,32 +20,11 @@ export default function ListAdvertisement() {
       field: 'images',
       title: 'Images',
       render: rowData =>
-        typeof rowData.logo == 'string' ? (
-          <img src={rowData.logo} alt="" width={40} height={30} />
+        typeof rowData.images == 'string' ? (
+          <img src={rowData.images} alt="" width={40} height={30} />
         ) : null,
     },
     { field: 'position', title: 'Position' },
-    // {
-    //   field: 'actions',
-    //   title: 'Actions',
-    //   sorting: false,
-    //   render: rowData => (
-    //     <Tooltip title="Edit">
-    //       <IconButton
-    //         variant="contained"
-    //         size="small"
-    //         color="secondary"
-    //         onClick={() => {
-    //           history.push('EditPopularTVProviders', {
-    //             state: { data: rowData },
-    //           });
-    //         }}
-    //       >
-    //         <EditIcon />
-    //       </IconButton>
-    //     </Tooltip>
-    //   ),
-    // },
   ];
 
   const getAdvertisement = () => {
@@ -66,7 +45,6 @@ export default function ListAdvertisement() {
     });
   };
   
-
   return (
     <Container component="main" maxWidth="lg">
       <CssBaseline />

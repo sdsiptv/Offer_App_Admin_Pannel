@@ -135,7 +135,7 @@ export default function AddVendorPushNotification() {
         data.append('type', role);
         // data.append('vendor', userIds);
         data.append('banners', imageObj1);
-        data.append('icon', imageObj2);
+        // data.append('icon', imageObj2);
 
         try {
             const res = await apis.addVendorPushNotification(data);
@@ -386,7 +386,7 @@ export default function AddVendorPushNotification() {
                                         </div>
                                     </Grid>
 
-                                    <Grid item xs={6}>
+                                    {/* <Grid item xs={6}>
                                         <div style={{ display: 'flex' }}>
                                             <input
                                                 type="file"
@@ -416,7 +416,7 @@ export default function AddVendorPushNotification() {
                                                 style={{ paddingLeft: '10px', width: '100px' }}
                                             />
                                         </div>
-                                    </Grid>
+                                    </Grid> */}
 
                                 </Grid>
 

@@ -73,36 +73,6 @@ export default function ListUsers() {
         },
     ];
 
-    const fetchStates = async () => {
-        try {
-            const res = await apis.getState();
-            setState(res?.data);
-            console.log('States:', res?.data);
-        } catch (error) {
-            console.error('Error fetching states:', error);
-        }
-    };
-
-    const fetchDistricts = async (stateId) => {
-        try {
-            const res = await apis.getDistrict(stateId);
-            setDistrict(res?.data);
-            console.log('Districts for state', stateId, ':', res?.data);
-        } catch (error) {
-            console.error('Error fetching districts:', error);
-        }
-    };
-
-    const fetchCities = async (districtId) => {
-        try {
-            const res = await apis.getCities(districtId);
-            setCity(res?.data);
-            console.log('Cities for district', districtId, ':', res?.data);
-        } catch (error) {
-            console.error('Error fetching cities:', error);
-        }
-    };
-
     const handleBlockusers = async (rowData) => {
         try {
             await apis.addUserBlock(rowData.id);
@@ -126,7 +96,6 @@ export default function ListUsers() {
 
     useEffect(() => {
         getAllUsers();
-        fetchStates();
     }, []);
 
     const handleViewVendor = (vendorData) => {
@@ -138,97 +107,11 @@ export default function ListUsers() {
         setOpenDialog(false);
     };
 
-    const handleFilterChange = () => {
-        const filters = {
-            state: selectedState,
-            district: selectedDistrict,
-            city: selectedCity,
-        };
-        getAllUsers(filters);
-    };
-
     return (
         <Container component="main" maxWidth="xl">
             <CssBaseline />
             <div className={classes.paper}>
                 <Grid container spacing={1}>
-                    {/* <Grid item xs={3}>
-                        <TextField
-                            id="filled-select-state"
-                            select
-                            label="State"
-                            required
-                            fullWidth
-                            helperText="Please select your State"
-                            variant="outlined"
-                            size="small"
-                            value={selectedState}
-                            onChange={(e) => {
-                                const stateId = e.target.value;
-                                setSelectedState(stateId);
-                                fetchDistricts(stateId);
-                                handleFilterChange();
-                            }}
-                        >
-                            {State.map((ele) => (
-                                <MenuItem key={ele.id} value={ele.id}>
-                                    {ele.state_name} 
-                                </MenuItem>
-                            ))}
-                        </TextField>
-
-                    </Grid>
-
-                    <Grid item xs={3}>
-                        <TextField
-                            variant="outlined"
-                            select
-                            fullWidth
-                            name="district"
-                            label="District"
-                            size="small"
-                            helperText="Please select your District"
-                            value={selectedDistrict}
-                            onChange={(e) => {
-                                const districtId = e.target.value;
-                                setSelectedDistrict(districtId);
-                                fetchCities(districtId);
-                                handleFilterChange();
-                            }}
-                        >
-                            {District.map((provider) => (
-                                <MenuItem key={provider.id} value={provider.id}>
-                                    {provider.district_name}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-
-                    </Grid>
-
-                    <Grid item xs={3}>
-                        <TextField
-                            variant="outlined"
-                            select
-                            fullWidth
-                            name="city"
-                            label="City"
-                            size="small"
-                            helperText="Please select your City"
-                            value={selectedCity}
-                            onChange={(e) => {
-                                const cityId = e.target.value;
-                                setSelectedCity(cityId);
-                                handleFilterChange();
-                            }}
-                        >
-                            {City.map((provider) => (
-                                <MenuItem key={provider.id} value={provider.id}>
-                                    {provider.city_name}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-
-                    </Grid> */}
 
                     <Grid item xs={12}>
                         <DRMWaitListTable
@@ -263,16 +146,16 @@ export default function ListUsers() {
                                         <TableCell style={{ fontSize: "18px" }}>{selectedVendor.address}</TableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Date of Birth:</Typography></TableCell>
-                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.dob}</TableCell>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>State:</Typography></TableCell>
+                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.state_name}</TableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Gender:</Typography></TableCell>
-                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.gender}</TableCell>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>District:</Typography></TableCell>
+                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.district_name}</TableCell>
                                     </TableRow>
                                     <TableRow>
-                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Postal Code:</Typography></TableCell>
-                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.postalcode}</TableCell>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>City:</Typography></TableCell>
+                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.city_name}</TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Created At:</Typography></TableCell>

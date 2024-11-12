@@ -33,13 +33,19 @@ export default function AddEditEvents({ pageMode = 'add' }) {
     const onSubmit = ({
         event_name,
         url,
-        locations,
+        landmark,
+        email,
+        mobile,
+        google_location,
         event_date
     }) => {
         let data = new FormData();
         data.append('event_name', event_name);
         data.append('url', url);
-        data.append('locations', locations);
+        data.append('google_location', google_location);
+        data.append('landmark', landmark);
+        data.append('email', email);
+        data.append('mobile', mobile);
         data.append('event_date', event_date);
         data.append('images', imageObj);
         const apiCall =
@@ -62,8 +68,11 @@ export default function AddEditEvents({ pageMode = 'add' }) {
         if (location.state) {
             let params = location.state.state.data;
             setValue('event_name', params.event_name);
+            setValue('landmark', params.landmark);
+            setValue('email', params.email);
+            setValue('mobile', params.mobile);
             setValue('url', params.url);
-            setValue('locations', params.locations);
+            setValue('google_location', params.google_location);
             setValue('event_date', formatDate(params.event_date));
             setImage(params.images);
             console.log('image', params.images);
@@ -127,12 +136,54 @@ export default function AddEditEvents({ pageMode = 'add' }) {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="locations"
-                                label="Locations"
+                                name="landmark"
+                                label="LandMark"
                                 type="text"
                                 InputLabelProps={{ shrink: true }}
-                                id="locations"
-                                {...register('locations', { required: true })}
+                                id="landmark"
+                                {...register('landmark', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="google_location"
+                                label="Google Locations"
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                id="google_location"
+                                {...register('google_location', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="mobile"
+                                label="Mobile Number"
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                id="mobile"
+                                {...register('mobile', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="email"
+                                label="Mail ID"
+                                type="email"
+                                InputLabelProps={{ shrink: true }}
+                                id="email"
+                                {...register('email', { required: true })}
                             />
                         </Grid>
 

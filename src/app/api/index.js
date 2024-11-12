@@ -24,6 +24,12 @@ const apis = {
     });
   },
 
+  //------------ GET DASHBOARD ---------------//
+  
+  getDashboard: () => {
+    return API.get(API_ENDPOINTS.GET_DASHBOARD);
+  },
+
   //--------------- CATEGORY --------------//
 
   getCategory: () => {

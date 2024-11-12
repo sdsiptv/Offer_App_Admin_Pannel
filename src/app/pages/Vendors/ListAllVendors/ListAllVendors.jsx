@@ -106,6 +106,22 @@ export default function ViewAllVendors() {
                                         <TableCell style={{ fontSize: "18px" }}>{selectedVendor.mobile_no}</TableCell>
                                     </TableRow>
                                     <TableRow>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Category:</Typography></TableCell>
+                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.category}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>State:</Typography></TableCell>
+                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.state_name}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>District:</Typography></TableCell>
+                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.district_name}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>City:</Typography></TableCell>
+                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.city_name}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
                                         <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Created At:</Typography></TableCell>
                                         <TableCell style={{ fontSize: "18px" }}>{moment(selectedVendor.createdAt).format('YYYY-MM-DD HH:MM')}</TableCell>
                                     </TableRow>

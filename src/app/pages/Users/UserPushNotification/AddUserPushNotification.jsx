@@ -134,7 +134,7 @@ export default function AddUserPushNotification() {
         data.append('title', title);
         data.append('type', role);
         data.append('banners', imageObj1);
-        data.append('icon', imageObj2);
+        // data.append('icon', imageObj2);
 
         try {
             const res = await apis.addUserPushNotification(data);
@@ -385,7 +385,7 @@ export default function AddUserPushNotification() {
                                         </div>
                                     </Grid>
 
-                                    <Grid item xs={6}>
+                                    {/* <Grid item xs={6}>
                                         <div style={{ display: 'flex' }}>
                                             <input
                                                 type="file"
@@ -394,6 +394,7 @@ export default function AddUserPushNotification() {
                                                 style={{ display: 'none' }}
                                                 onChange={handleImageChange2}
                                                 id="contained-button-file2"
+                                                required
                                             />
                                             <label htmlFor="contained-button-file2">
                                                 <Button
@@ -402,7 +403,7 @@ export default function AddUserPushNotification() {
                                                     component="span"
                                                     htmlFor="contained-button-file2"
                                                 >
-                                                    Icon
+                                                    Icon *
                                                 </Button>
                                             </label>
                                             <img
@@ -415,7 +416,7 @@ export default function AddUserPushNotification() {
                                                 style={{ paddingLeft: '10px', width: '100px' }}
                                             />
                                         </div>
-                                    </Grid>
+                                    </Grid> */}
 
                                 </Grid>
 

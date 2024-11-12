@@ -28,9 +28,10 @@ export default function AddEditAdvertisement({ pageMode = 'add' }) {
         setImageObj(fileUploaded);
     };
 
-    const onSubmit = ({ position }) => {
+    const onSubmit = ({url, position }) => {
         let data = new FormData();
         data.append('position', position);
+        data.append('url', url);
         data.append('images', imageObj);
         const apiCall =
             pageMode === 'add'
@@ -82,6 +83,20 @@ export default function AddEditAdvertisement({ pageMode = 'add' }) {
                                 InputLabelProps={{ shrink: true }}
                                 id="position"
                                 {...register('position', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="url"
+                                label="Image Deep Link Url"
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                id="url"
+                                {...register('url', { required: true })}
                             />
                         </Grid>
 

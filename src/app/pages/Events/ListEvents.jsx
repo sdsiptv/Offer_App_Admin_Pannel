@@ -27,7 +27,10 @@ export default function ListEvents() {
     },
     { field: 'event_name', title: 'Event Name' },
     { field: 'url', title: 'URL' },
-    { field: 'locations', title: 'Location' },
+    { field: 'mobile', title: 'Mobile Number' },
+    { field: 'email', title: 'E Mail' },
+    { field: 'landmark', title: 'Land Mark' },
+    { field: 'google_location', title: 'Location' },
     {
       field: 'event_date',
       title: 'Event Date',

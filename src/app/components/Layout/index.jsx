@@ -17,8 +17,12 @@ import Logowith from '../../assets/OfferLogo.png';
 import Notifications from '../Navbar/Notifications';
 import Sidebar from '../Sidebar';
 import { useStyles } from './styles';
-import Menus from "../../assets/menu.png";
-import Cross from "../../assets/cross.png";
+import Menus from "../../assets/menusvg.svg";
+
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBurger } from '@fortawesome/free-solid-svg-icons';
+// import Cross from "../../assets/crosssvg.svg";
 // import Logo from "../../assets/Doctorlogo.png";
 function Layout({ children }) {
   const classes = useStyles();
@@ -54,7 +58,8 @@ function Layout({ children }) {
                 className={clsx(classes.menuButton, open && classes.hide)}
                 style={{ backgroundColor: '#FFFFFF' }}
               >
-                <img src={Menus} alt="Logo" height="30px" width="30px"></img>
+                {/* <img src={Menus} alt="Logo" height="30px" width="30px"></img> */}
+                <FontAwesomeIcon icon={faBurger} style={{ fontSize: "35px", color: "#F07228" }} />
                 {/* <AddAPhotoIcon /> */}
                 <div style={{ display: "flex" }}
                   className={clsx(classes.menuButton, open && classes.hide)}
@@ -91,7 +96,8 @@ function Layout({ children }) {
               <div className={classes.drawerHeader} style={{ display: "flex", marginRight: "80px", justifyContent: "space-between" }}>
                 <IconButton onClick={handleDrawerClose}>
                   {theme.direction === 'ltr' ? (
-                    <img src={Cross} alt="Logo" height="30px" width="30px"></img>
+                    // <img src={Cross} alt="Logo" height="30px" width="30px"></img>
+                    <FontAwesomeIcon icon={faCircleXmark} style={{fontSize:"30px",color:"#F07228"}}/>
                   ) : (
                     <ChevronRight style={{ color: 'white' }} />
                   )}

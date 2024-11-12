@@ -1,14 +1,15 @@
 // const { BASE_URL } = process.env;
 
 // const BASE_URL = 'http://localhost:3001';
-const BASE_URL = 'http://192.168.1.4:3000';
+const BASE_URL = 'http://192.168.1.13:3000';
 // const BASE_URL = 'https://192.168.1.11/offerapp';
 // const BASE_URL = 'https://103.219.207.71/offerapp';
+// const BASE_URL = 'https://148.113.1.126/offerapp';
 
 const API_ENDPOINTS = {
   LOGIN: `${BASE_URL}/api/adminlogin`,
 
-  GET_DASHBOARD: `${BASE_URL}/admin/dashboard/all`,
+  GET_DASHBOARD: `${BASE_URL}/api/adminDashboard`,
   GET_GENERAL_SETTINGS: `${BASE_URL}/admin/generalsettings`,
   EDIT_GENERAL_SETTINGS: `${BASE_URL}/admin/generalsettings`,
   GET_SYTEM_INFO: `${BASE_URL}/admin/generalsettings/info`,
@@ -55,7 +56,6 @@ const API_ENDPOINTS = {
 
   GET_SUBSCRIPTION:`${BASE_URL}/api/subscription`,
   PUT_SUBSCRIPTION:`${BASE_URL}/api/subscription`,
-
 
   POST_VENDOR_PUSH_NOTIFICATION: `${BASE_URL}/api/notification`,
   POST_USER_PUSH_NOTIFICATION: `${BASE_URL}/api/usernotification`,

@@ -21,6 +21,7 @@ export default function ViewProductTags() {
 
   const columns = [
     { field: 'name', title: 'Vendor Tags' },
+    { field: 'position', title: 'Position' },
     { field: 'id', title: 'Vendor ID' },
     {
       field: 'actions',
@@ -78,7 +79,7 @@ export default function ViewProductTags() {
       return;
     }
     let idToDelete = filter[0];
-    apis.deleteVendorTags(idToDelete).then(res => {
+    apis.deleteProductTags(idToDelete).then(res => {
       toastMessage('Successfully Deleted');
       fetchProduct(selectedCategory);
     });
@@ -144,7 +145,6 @@ export default function ViewProductTags() {
             </Grid>
 
           </Grid>
-
         </Grid>
       </div>
     </Container>

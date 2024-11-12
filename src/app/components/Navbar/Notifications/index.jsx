@@ -8,8 +8,11 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { logout } from 'store/session/actions';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+
 import User from "../../../assets/new.png";
 import Message from "../../../assets/message.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserMinus } from '@fortawesome/free-solid-svg-icons';
 function Notifications() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -93,7 +96,7 @@ function Notifications() {
       <MenuItem>
         <IconButton size="small" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
-          <img src={Message} alt="Logo" height="50px" style={{ marginLeft: "10px" }} />
+            <img src={Message} alt="Logo" height="50px" style={{ marginLeft: "10px" }} />
 
           </Badge>
         </IconButton>
@@ -119,7 +122,8 @@ function Notifications() {
           aria-haspopup="true"
           color="inherit"
         >
-          <img src={User} alt="Logo" height="50px" style={{ marginLeft: "10px" }} />
+          {/* <img src={User} alt="Logo" height="50px" style={{ marginLeft: "10px" }} /> */}
+          <FontAwesomeIcon icon={faUserMinus} />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -131,9 +135,9 @@ function Notifications() {
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
         <IconButton size="small" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-          <img src={Message} alt="Logo" height="20px" />
-          </Badge>
+          {/* <Badge badgeContent={4} color="error">
+            <img src={Message} alt="Logo" height="20px" />
+          </Badge> */}
         </IconButton>
         {/* <text>Admin User</text> */}
         <IconButton
@@ -145,7 +149,8 @@ function Notifications() {
           onClick={handleProfileMenuOpen}
           color="inherit"
         >
-          <img src={User} alt="Logo" height="30px" style={{ marginLeft: "10px" }} />
+          {/* <img src={User} alt="Logo" height="30px" style={{ marginLeft: "10px" }} /> */}
+          <FontAwesomeIcon icon={faUserMinus} style={{ color: "#F07228", fontSize: "23px" }} />
         </IconButton>
       </Box>
       <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
