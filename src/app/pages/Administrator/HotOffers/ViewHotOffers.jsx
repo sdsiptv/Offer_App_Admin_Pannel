@@ -10,45 +10,62 @@ import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
 
-export default function ListAdvertisement() {
+export default function ViewHotOffers() {
   const classes = useStyles();
   const history = useHistory();
-  const [Advertisement, setAdvertisement] = useState([]);
+  const [HotOffers, setHotOffers] = useState([]);
 
   const columns = [
-    {
-      field: 'images',
-      title: 'Images',
-      render: rowData =>
-        typeof rowData.images == 'string' ? (
-          <img src={rowData.images} alt="" width={40} height={30} />
-        ) : null,
-    },
-    { field: 'position', title: 'Position' },
-    { field: 'state', title: 'State' },
-    { field: 'district', title: 'District' },
-    { field: 'city', title: 'City' },
+    { field: 'shop_name', title: 'Vendor' },
+    { field: 'offer_name', title: 'Offer' },
     { field: 'url', title: 'URL' },
+    {
+      field: 'actions',
+      title: 'Actions',
+      sorting: false,
+      render: rowData => (
+        <Tooltip title="Edit">
+          <IconButton
+            variant="contained"
+            size="small"
+            color="secondary"
+            onClick={() => {
+              history.push('EditHotOffers', {
+                state: { data: rowData },
+              });
+            }}
+          >
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
+      ),
+    },
   ];
 
-  const getAdvertisement = () => {
-    apis.getAdvertisement().then(res => {
-      setAdvertisement(res?.data);
+  const getHotOffers = () => {
+    apis.getHotOffers().then(res => {
+      console.log('hii', res?.data)
+      setHotOffers(res?.data);
     });
   };
 
   useEffect(() => {
-    getAdvertisement();
+    getHotOffers();
   }, []);
 
   const deleteHandler = data => {
-    let filter = data[0]?.id;
-    apis.deleteAdvertisement(filter).then(res => {
-      toastMessage('Successfully deleted');
-      getAdvertisement();
+    let filter = data.map(obj => obj.id);
+    if (filter.length === 0) {
+      console.log("No IDs to delete");
+      return;
+    }
+    let idToDelete = filter[0];
+    apis.deleteHotOffers(idToDelete).then(res => {
+      toastMessage('Successfully Deleted');
+      getHotOffers();
     });
   };
-  
+
   return (
     <Container component="main" maxWidth="lg">
       <CssBaseline />
@@ -63,26 +80,24 @@ export default function ListAdvertisement() {
                 variant="contained"
                 style={{ backgroundColor: GREEN }}
                 onClick={() => {
-                  history.push('/AddAdvertisement');
+                  history.push('/AddHotOffers');
                 }}
               >
-                Add Advertisement
+                Add HotOffers
               </Button>
             </div>
           </Grid>
 
           <Grid item xs={12}>
             <MaterialTables
-              title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>ADVERTISEMENT</span>}
+              title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>HOT OFFERS</span>}
               columns={columns}
-              data={Advertisement}
+              data={HotOffers}
               deleteHandler={deleteHandler}
             />
           </Grid>
         </Grid>
       </div>
-
-
     </Container>
   );
 }

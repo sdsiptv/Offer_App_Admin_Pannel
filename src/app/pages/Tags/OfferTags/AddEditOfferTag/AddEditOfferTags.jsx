@@ -23,9 +23,9 @@ export default function AddEditOfferTags({ pageMode = 'add' }) {
 
   const onSubmit = data => {
     const apiCall =
-    pageMode === 'add'
-        ? apis.addOfferTags(data.name)
-        : apis.editOfferTags(data.id, data.name);
+      pageMode === 'add'
+        ? apis.addOfferTags(data.name, data.calculative)
+        : apis.editOfferTags(data.id, data.name, data.calculative);
 
     apiCall
       .then(res => {
@@ -43,6 +43,7 @@ export default function AddEditOfferTags({ pageMode = 'add' }) {
     if (location.state) {
       let params = location.state.state.data;
       setValue('name', params.name);
+      setValue('calculative', params.calculative);
       setValue('id', params.id);
     } else {
       history.push('/AddOfferTags');
@@ -72,6 +73,20 @@ export default function AddEditOfferTags({ pageMode = 'add' }) {
                 InputLabelProps={{ shrink: true }}
                 id="name"
                 {...register('name', { required: true })}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="calculative"
+                label="Calculative"
+                type="number"
+                InputLabelProps={{ shrink: true }}
+                id="calculative"
+                {...register('calculative', { required: true })}
               />
             </Grid>
 

@@ -23,13 +23,24 @@ export default function AddEditCustomerSupport({ pageMode = 'add' }) {
 
     const { register, handleSubmit, setValue } = useForm();
 
-    const onSubmit = ({ constact_number_1, constact_number_2, whatsapp, support_mail }) => {
+    const onSubmit = ({
+        constact_number_1,
+        constact_number_2,
+        whatsapp,
+        support_mail,
+        profile,
+        customerapp,
+        vendorapp
+    }) => {
+
         let data = new FormData();
         data.append('constact_number_1', constact_number_1);
         data.append('constact_number_2', constact_number_2);
         data.append('whatsapp', whatsapp);
         data.append('support_mail', support_mail);
-
+        data.append('profile', profile);
+        data.append('customerapp', customerapp);
+        data.append('vendorapp', vendorapp);
         // if (pageMode === 'edit') {
         //     const categoryId = location.state.state.data?.id;
         //     data.append('id', categoryId);
@@ -59,6 +70,9 @@ export default function AddEditCustomerSupport({ pageMode = 'add' }) {
             setValue('constact_number_2', params.constact_number_2);
             setValue('whatsapp', params.whatsapp);
             setValue('support_mail', params.support_mail);
+            setValue('profile', params.profile);
+            setValue('customerapp', params.customerapp);
+            setValue('vendorapp', params.vendorapp);
             setValue('id', params.id);
         } else {
             history.push('/AddCustomerSupport');
@@ -130,6 +144,48 @@ export default function AddEditCustomerSupport({ pageMode = 'add' }) {
                                 InputLabelProps={{ shrink: true }}
                                 id="support_mail"
                                 {...register('support_mail', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="profile"
+                                label="Profile BaseURL"
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                id="profile"
+                                {...register('profile', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="customerapp"
+                                label="Customer"
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                id="customerapp"
+                                {...register('customerapp', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="vendorapp"
+                                label="Vendor"
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                id="vendorapp"
+                                {...register('vendorapp', { required: true })}
                             />
                         </Grid>
 

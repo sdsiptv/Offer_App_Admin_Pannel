@@ -25,7 +25,7 @@ const apis = {
   },
 
   //------------ GET DASHBOARD ---------------//
-  
+
   getDashboard: () => {
     return API.get(API_ENDPOINTS.GET_DASHBOARD);
   },
@@ -144,26 +144,86 @@ const apis = {
     });
   },
 
-    //--------------- OUANTITY TYPES --------------//
+  //--------------- OUANTITY TYPES --------------//
 
-    getQuantityTypes: () => {
-      return API.get(API_ENDPOINTS.GET_QUANTITY_TYPES);
+  getQuantityTypes: () => {
+    return API.get(API_ENDPOINTS.GET_QUANTITY_TYPES);
+  },
+
+  addQuantityTypes: (name) => {
+    return API.post(API_ENDPOINTS.POST_QUANTITY_TYPES + "?name=" + name, {
+    });
+  },
+
+  editQuantityTypes: (id, name) => {
+    return API.put(API_ENDPOINTS.EDIT_QUANTITY_TYPES + "?name=" + name + "&id=" + id, {
+    });
+  },
+
+  deleteQuantityTypes: (id) => {
+    return API.delete(API_ENDPOINTS.DELETE_QUANTITY_TYPES + "?id=" + id, {
+    });
+  },
+
+  //--------------- Hot Offers --------------//
+
+  getHotOffers: () => {
+    return API.get(API_ENDPOINTS.GET_HOT_OFFERS);
+  },
+
+  addHotOffers: formData => {
+    return API.post(API_ENDPOINTS.POST_HOT_OFFERS, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  editHotOffers: (id, formData) => {
+    return API.put(API_ENDPOINTS.EDIT_HOT_OFFERS + "/" + id, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  deleteHotOffers: id => {
+    return API.delete(
+      API_ENDPOINTS.DELETE_HOT_OFFERS + '/' + id,
+      {
+        [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+      },
+    );
+  },
+
+    //--------------- Ad Insertion --------------//
+
+    getAdInsertion: () => {
+      return API.get(API_ENDPOINTS.GET_AD_INSERTION);
     },
   
-    addQuantityTypes: (name) => {
-      return API.post(API_ENDPOINTS.POST_QUANTITY_TYPES + "?name=" + name, {
+    addAdInsertion: formData => {
+      return API.post(API_ENDPOINTS.POST_AD_INSERTION, formData, {
+        [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
       });
     },
   
-    editQuantityTypes: (id, name) => {
-      return API.put(API_ENDPOINTS.EDIT_QUANTITY_TYPES + "?name=" + name + "&id=" + id, {
+    editAdInsertion: (id, formData) => {
+      return API.put(API_ENDPOINTS.EDIT_AD_INSERTION + "/" + id, formData, {
+        [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
       });
     },
   
-    deleteQuantityTypes: (id) => {
-      return API.delete(API_ENDPOINTS.DELETE_QUANTITY_TYPES + "?id=" + id, {
-      });
+    deleteAdInsertion: id => {
+      return API.delete(
+        API_ENDPOINTS.DELETE_AD_INSERTION + '?id=' + id,
+        {
+          [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+        },
+      );
     },
+
+  //--------------- OFFER USING ID --------------//
+
+  getOffersUsingId: (id) => {
+    return API.get(API_ENDPOINTS.GET_OFFER_BY_ID + "/" + id);
+  },
 
   //--------------- VENDORS --------------//
 
@@ -243,13 +303,13 @@ const apis = {
     return API.get(API_ENDPOINTS.GET_OFFER_TAGS);
   },
 
-  addOfferTags: (name) => {
-    return API.post(API_ENDPOINTS.POST_OFFER_TAGS + "?name=" + name, {
+  addOfferTags: (name, calculative) => {
+    return API.post(API_ENDPOINTS.POST_OFFER_TAGS + "?name=" + name + "&calculative=" + calculative, {
     });
   },
 
-  editOfferTags: (id, name) => {
-    return API.put(API_ENDPOINTS.EDIT_OFFER_TAGS + "?name=" + name + "&id=" + id, {
+  editOfferTags: (id, name, calculative) => {
+    return API.put(API_ENDPOINTS.EDIT_OFFER_TAGS + "?name=" + name + "&id=" + id + "&calculative=" + calculative, {
     });
   },
 

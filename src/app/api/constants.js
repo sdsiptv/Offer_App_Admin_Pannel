@@ -1,8 +1,8 @@
 // const { BASE_URL } = process.env;
 
 // const BASE_URL = 'http://localhost:3001';
-const BASE_URL = 'http://192.168.1.13:3000';
-// const BASE_URL = 'https://192.168.1.11/offerapp';
+// const BASE_URL = 'http://192.168.1.7:3000';
+const BASE_URL = 'https://192.168.1.11/offerapp';
 // const BASE_URL = 'https://103.219.207.71/offerapp';
 // const BASE_URL = 'https://148.113.1.126/offerapp';
 
@@ -45,6 +45,18 @@ const API_ENDPOINTS = {
   EDIT_QUANTITY_TYPES: `${BASE_URL}/api/quantityType/update`,
   DELETE_QUANTITY_TYPES: `${BASE_URL}/api/quantityType/delete`,
 
+  GET_HOT_OFFERS: `${BASE_URL}/api/hotoffers`,
+  POST_HOT_OFFERS: `${BASE_URL}/api/hotoffers/insert`,
+  EDIT_HOT_OFFERS: `${BASE_URL}/api/hotoffers/update`,
+  DELETE_HOT_OFFERS: `${BASE_URL}/api/hotoffers/delete`,
+
+  GET_AD_INSERTION: `${BASE_URL}/api/insertionads`,
+  POST_AD_INSERTION: `${BASE_URL}/api/insertionads/insert`,
+  EDIT_AD_INSERTION: `${BASE_URL}/api/insertionads/update`,
+  DELETE_AD_INSERTION: `${BASE_URL}/api/insertionads/delete`,
+
+  GET_OFFER_BY_ID: `${BASE_URL}/api/hotoffers/vendor`,
+
   ACCEPT_VENDORS: `${BASE_URL}/api/vendor/aproval`,
   REJECT_VENDORS: `${BASE_URL}/api/vendor/reject`,
   RETRIEVE_VENDORS: `${BASE_URL}/api/vendor/retrive`,
@@ -54,8 +66,8 @@ const API_ENDPOINTS = {
   GET_PENDING_VENDOR: `${BASE_URL}/api/vendor/pendingVendorList`,
   GET_REJECTED_VENDOR: `${BASE_URL}/api/vendor/rejectedVendorList`,
 
-  GET_SUBSCRIPTION:`${BASE_URL}/api/subscription`,
-  PUT_SUBSCRIPTION:`${BASE_URL}/api/subscription`,
+  GET_SUBSCRIPTION: `${BASE_URL}/api/subscription`,
+  PUT_SUBSCRIPTION: `${BASE_URL}/api/subscription`,
 
   POST_VENDOR_PUSH_NOTIFICATION: `${BASE_URL}/api/notification`,
   POST_USER_PUSH_NOTIFICATION: `${BASE_URL}/api/usernotification`,

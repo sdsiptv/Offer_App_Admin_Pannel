@@ -55,6 +55,10 @@ import ListAdvertisement from './pages/Administrator/Advertisement/ListAdvertise
 import AddEditAdvertisement from './pages/Administrator/Advertisement/AddAdvertisement';
 import ViewQuantityTypes from './pages/Administrator/QuantityTypes/ListQuantityTypes';
 import AddEditQuantityTypes from './pages/Administrator/QuantityTypes/AddEditQuantityTypes/AddEditQuantityTypes';
+import ViewHotOffers from './pages/Administrator/HotOffers/ViewHotOffers';
+import AddEditHotOffers from './pages/Administrator/HotOffers/AddEditHotOffers';
+import AddEditAdInsertion from './pages/Administrator/AdInsertion/AddEditAdInsertion/AddEditAdInsertion';
+import ListAdInsertion from './pages/Administrator/AdInsertion/ListAdInsertion/ListAdInsertion';
 
 
 export function App() {
@@ -181,6 +185,39 @@ export function App() {
             pageMode="edit"
           />
 
+          {/*----------- HOT OFFERS ------------*/}
+
+          <PrivateRoute
+            path="/ViewHotOffers"
+            component={ViewHotOffers}
+          />
+          <PrivateRoute
+            path="/AddHotOffers"
+            component={AddEditHotOffers}
+            pageMode="add"
+          />
+          <PrivateRoute
+            path="/EditHotOffers"
+            component={AddEditHotOffers}
+            pageMode="edit"
+          />
+
+          {/*----------- AD INSERTION ------------*/}
+
+          <PrivateRoute
+            path="/ViewAdInsertion"
+            component={ListAdInsertion}
+          />
+          <PrivateRoute
+            path="/AddAdInsertion"
+            component={AddEditAdInsertion}
+            pageMode="add"
+          />
+          <PrivateRoute
+            path="/EditAdInsertion"
+            component={AddEditAdInsertion}
+            pageMode="edit"
+          />
 
           {/*----------- VENDORS ------------*/}
 

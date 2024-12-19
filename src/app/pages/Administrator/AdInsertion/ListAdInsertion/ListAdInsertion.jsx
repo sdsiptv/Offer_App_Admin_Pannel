@@ -10,19 +10,23 @@ import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
 
-export default function ViewCustomerSupport() {
+export default function ListAdInsertion() {
     const classes = useStyles();
     const history = useHistory();
-    const [CustomerSupport, setCustomerSupport] = useState([]);
+    const [AdInsertion, setAdInsertion] = useState([]);
 
     const columns = [
-        { field: 'constact_number_1', title: 'Contact Number 1' },
-        { field: 'constact_number_2', title: 'Contact Number 2' },
-        { field: 'whatsapp', title: 'Whatsapp' },
-        { field: 'support_mail', title: 'Support Mail' },
-        { field: 'vendorapp', title: 'Vendor' },
-        { field: 'customerapp', title: 'Customer' },
-        { field: 'profile', title: 'Profile BaseURL' },
+        {
+            field: 'images',
+            title: 'Logo',
+            render: rowData =>
+                typeof rowData.images == 'string' ? (
+                    <img src={rowData.images} alt="" width={40} height={30} />
+                ) : null,
+        },
+        { field: 'offer_name', title: 'Offer' },
+        { field: 'position', title: 'Position' },
+        { field: 'url', title: 'URL' },
         {
             field: 'actions',
             title: 'Actions',
@@ -34,7 +38,7 @@ export default function ViewCustomerSupport() {
                         size="small"
                         color="secondary"
                         onClick={() => {
-                            history.push('EditCustomerSupport', {
+                            history.push('EditAdInsertion', {
                                 state: { data: rowData },
                             });
                         }}
@@ -46,24 +50,15 @@ export default function ViewCustomerSupport() {
         },
     ];
 
-    const getCustomerSupport = () => {
-        apis.getCustomerSupport().then(res => {
-            if (res?.data) {
-                const formattedData = [res.data]; 
-                setCustomerSupport(formattedData);
-            } else {
-                setCustomerSupport([]);
-            }
-        }).catch(error => {
-            console.error("Failed to fetch customer support:", error);
-            toastMessage('Error fetching customer support');
+    const getAdInsertion = () => {
+        apis.getAdInsertion().then(res => {
+            console.log('hii', res?.data)
+            setAdInsertion(res?.data);
         });
     };
-    
-    
 
     useEffect(() => {
-        getCustomerSupport();
+        getAdInsertion();
     }, []);
 
     const deleteHandler = data => {
@@ -73,14 +68,14 @@ export default function ViewCustomerSupport() {
             return;
         }
         let idToDelete = filter[0];
-        apis.deleteCustomerSupport(idToDelete).then(() => {
+        apis.deleteAdInsertion(idToDelete).then(res => {
             toastMessage('Successfully Deleted');
-            getCustomerSupport();
+            getAdInsertion();
         });
     };
 
     return (
-        <Container component="main" maxWidth="xl">
+        <Container component="main" maxWidth="lg">
             <CssBaseline />
             <div className={classes.paper}>
                 <Grid container spacing={1}>
@@ -88,26 +83,24 @@ export default function ViewCustomerSupport() {
                         <Grid container spacing={1} alignItems="flex-end"></Grid>
                     </Grid>
                     <Grid item xs={2}>
-                        {CustomerSupport.length === 0 && (
-                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                <Button
-                                    variant="contained"
-                                    style={{ backgroundColor: GREEN }}
-                                    onClick={() => {
-                                        history.push('/AddCustomerSupport');
-                                    }}
-                                >
-                                    Add Support
-                                </Button>
-                            </div>
-                        )}
+                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                            <Button
+                                variant="contained"
+                                style={{ backgroundColor: GREEN }}
+                                onClick={() => {
+                                    history.push('/AddAdInsertion');
+                                }}
+                            >
+                                Add AdInsertion
+                            </Button>
+                        </div>
                     </Grid>
 
                     <Grid item xs={12}>
                         <MaterialTables
-                            title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>CUSTOMER SUPPORT</span>}
+                            title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>AD INSERTION</span>}
                             columns={columns}
-                            data={CustomerSupport}
+                            data={AdInsertion}
                             deleteHandler={deleteHandler}
                         />
                     </Grid>

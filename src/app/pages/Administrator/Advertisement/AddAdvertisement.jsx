@@ -5,6 +5,9 @@ import {
     Grid,
     TextField,
     Typography,
+    MenuItem,
+    Checkbox,
+    FormControlLabel,
 } from '@material-ui/core';
 import apis from 'app/api';
 import React, { useEffect, useState } from 'react';
@@ -19,8 +22,19 @@ export default function AddEditAdvertisement({ pageMode = 'add' }) {
     const history = useHistory();
     const location = useLocation();
     const classes = useStyles();
+
     const [imageObj, setImageObj] = useState(undefined);
     const [image, setImage] = useState('');
+    const [State, setState] = useState([]);
+    const [selectedState, setSelectedState] = useState('');
+    const [District, setDistrict] = useState([]);
+    const [selectedDistrict, setSelectedDistrict] = useState('');
+    const [City, setCity] = useState([]);
+    const [selectedCity, setSelectedCity] = useState('');
+    const [UseState, setUseState] = useState(false);
+    const [UseDistrict, setUseDistrict] = useState(false);
+    const [UseCity, setUseCity] = useState(false);
+
     const { register, handleSubmit, setValue } = useForm();
 
     const handleImageChange = event => {
@@ -28,37 +42,65 @@ export default function AddEditAdvertisement({ pageMode = 'add' }) {
         setImageObj(fileUploaded);
     };
 
-    const onSubmit = ({url, position }) => {
+    useEffect(() => {
+        fetchStates();
+        if (location.state) {
+            let params = location.state.state.data;
+            setValue('position', params.position);
+            setValue('url', params.url);
+            setImage(params.logo);
+        } else if (pageMode === 'edit') {
+            history.push('/Advertisement');
+        }
+    }, []);
+
+    const fetchStates = () => {
+        apis.getState()
+            .then(res => setState(res.data))
+            .catch(err => failureNotification('Error fetching states'));
+    };
+
+    const fetchDistricts = stateId => {
+        apis.getDistrict(stateId)
+            .then(res => setDistrict(res.data))
+            .catch(err => failureNotification('Error fetching districts'));
+    };
+
+    const fetchCities = districtId => {
+        apis.getCities(districtId)
+            .then(res => setCity(res.data))
+            .catch(err => failureNotification('Error fetching cities'));
+    };
+
+    const handleCheckboxChange = checkbox => {
+        setUseState(checkbox === 'state');
+        setUseDistrict(checkbox === 'district');
+        setUseCity(checkbox === 'city');
+    };
+
+    const onSubmit = ({ position, url }) => {
         let data = new FormData();
         data.append('position', position);
         data.append('url', url);
         data.append('images', imageObj);
+        if (UseState) data.append('state', selectedState);
+        if (UseDistrict) data.append('district', selectedDistrict);
+        if (UseCity) data.append('city', selectedCity);
+
         const apiCall =
             pageMode === 'add'
                 ? apis.addAdvertisement(data)
-                : apis.editPopularTVProviders(location.state.state.data?.providerId, data);
+                : apis.editAdvertisement(location.state.state.data?.id, data);
 
         apiCall
-            .then(res => {
+            .then(() => {
                 toastMessage(
-                    pageMode === 'add' ? `Successfully Added ` : `Successfully updated`,
+                    pageMode === 'add' ? `Successfully Added` : `Successfully Updated`,
                 );
                 history.push('/Advertisement');
             })
-            .catch(err => {
-                failureNotification('Network error');
-            });
+            .catch(() => failureNotification('Network error'));
     };
-
-    useEffect(() => {
-        if (location.state) {
-            let params = location.state.state.data;
-            setValue('name', params.providerName);
-            setImage(params.logo);
-        } else {
-            history.push('/AddAdvertisement');
-        }
-    }, []);
 
     return (
         <Container component="main" maxWidth="sm">
@@ -73,12 +115,113 @@ export default function AddEditAdvertisement({ pageMode = 'add' }) {
                         </Grid>
 
                         <Grid item xs={12}>
+                            <FormControlLabel
+                                label="State"
+                                control={
+                                    <Checkbox
+                                        checked={UseState}
+                                        onChange={() => handleCheckboxChange('state')}
+                                        style={{ color: '#673ab7' }}
+                                    />
+                                }
+                            />
+                            {UseState && (
+                                <TextField
+                                    id="state-select"
+                                    select
+                                    label="State"
+                                    fullWidth
+                                    variant="outlined"
+                                    size="small"
+                                    value={selectedState}
+                                    onChange={e => {
+                                        const stateId = e.target.value;
+                                        setSelectedState(stateId);
+                                        fetchDistricts(stateId);
+                                    }}
+                                >
+                                    {State.map(state => (
+                                        <MenuItem key={state.id} value={state.id}>
+                                            {state.state_name}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                            )}
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <FormControlLabel
+                                label="District"
+                                control={
+                                    <Checkbox
+                                        checked={UseDistrict}
+                                        onChange={() => handleCheckboxChange('district')}
+                                        style={{ color: '#673ab7' }}
+                                    />
+                                }
+                            />
+                            {UseDistrict && (
+                                <TextField
+                                    id="district-select"
+                                    select
+                                    label="District"
+                                    fullWidth
+                                    variant="outlined"
+                                    size="small"
+                                    value={selectedDistrict}
+                                    onChange={e => {
+                                        const districtId = e.target.value;
+                                        setSelectedDistrict(districtId);
+                                        fetchCities(districtId);
+                                    }}
+                                >
+                                    {District.map(district => (
+                                        <MenuItem key={district.id} value={district.id}>
+                                            {district.district_name}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                            )}
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <FormControlLabel
+                                label="City"
+                                control={
+                                    <Checkbox
+                                        checked={UseCity}
+                                        onChange={() => handleCheckboxChange('city')}
+                                        style={{ color: '#673ab7' }}
+                                    />
+                                }
+                            />
+                            {UseCity && (
+                                <TextField
+                                    id="city-select"
+                                    select
+                                    label="City"
+                                    fullWidth
+                                    variant="outlined"
+                                    size="small"
+                                    value={selectedCity}
+                                    onChange={e => setSelectedCity(e.target.value)}
+                                >
+                                    {City.map(city => (
+                                        <MenuItem key={city.id} value={city.id}>
+                                            {city.city_name}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                            )}
+                        </Grid>
+
+                        <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
                                 required
                                 fullWidth
                                 name="position"
-                                label="position"
+                                label="Position"
                                 type="text"
                                 InputLabelProps={{ shrink: true }}
                                 id="position"
@@ -92,7 +235,7 @@ export default function AddEditAdvertisement({ pageMode = 'add' }) {
                                 required
                                 fullWidth
                                 name="url"
-                                label="Image Deep Link Url"
+                                label="Image Deep Link URL"
                                 type="text"
                                 InputLabelProps={{ shrink: true }}
                                 id="url"
@@ -115,14 +258,13 @@ export default function AddEditAdvertisement({ pageMode = 'add' }) {
                                         variant="contained"
                                         color="primary"
                                         component="span"
-                                        htmlFor="contained-button-file"
                                     >
-                                        ADD IMAGES *
+                                        ADD IMAGE
                                     </Button>
                                 </label>
                                 <img
                                     src={
-                                        typeof imageObj == 'object'
+                                        typeof imageObj === 'object'
                                             ? URL.createObjectURL(imageObj)
                                             : image
                                     }
@@ -133,37 +275,21 @@ export default function AddEditAdvertisement({ pageMode = 'add' }) {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    justifyContent: 'flex-end',
-                                }}
-                            >
-                                <div>
-                                    <Button
-                                        type="submit"
-                                        required
-                                        fullWidth
-                                        variant="contained"
-                                        style={{ backgroundColor: GREEN, width: 150 }}
-                                    >
-                                        {pageMode === 'add' ? 'CREATE' : 'UPDATE'}
-                                    </Button>
-                                </div>
-                                <div>
-                                    <Button
-                                        required
-                                        fullWidth
-                                        variant="contained"
-                                        style={{ backgroundColor: LIGHT_GREY.length, width: 150 }}
-                                        onClick={() => {
-                                            history.push('/Advertisement');
-                                        }}
-                                    >
-                                        BACK
-                                    </Button>
-                                </div>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    style={{ backgroundColor: GREEN, marginRight: 10 }}
+                                >
+                                    {pageMode === 'add' ? 'CREATE' : 'UPDATE'}
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    style={{ backgroundColor: LIGHT_GREY }}
+                                    onClick={() => history.push('/Advertisement')}
+                                >
+                                    BACK
+                                </Button>
                             </div>
                         </Grid>
                     </Grid>

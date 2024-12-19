@@ -17,6 +17,7 @@ export default function ViewOfferTags() {
 
   const columns = [
     { field: 'name', title: 'Name' },
+    { field: 'calculative', title: 'Calculative' },
     {
       field: 'actions',
       title: 'Actions',
