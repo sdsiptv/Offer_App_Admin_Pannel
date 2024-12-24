@@ -15,49 +15,52 @@ import { GREEN, LIGHT_GREY } from 'utils/constant/color';
 import useStyles from 'styles/globalStyles';
 import { failureNotification, toastMessage } from 'utils/helper';
 
-export default function AddEditEvents({ pageMode = 'add' }) {
+export default function AddEditVendorSupport({ pageMode = 'add' }) {
     const hiddenFileInput = React.useRef(null);
     const history = useHistory();
     const location = useLocation();
     const classes = useStyles();
-    const [images, setImage] = useState('');
-    const [imageObj, setImageObj] = useState(undefined);
 
     const { register, handleSubmit, setValue } = useForm();
 
-    const handleImageChange = event => {
-        const fileUploaded = event.target.files[0];
-        setImageObj(fileUploaded);
-    };
-
     const onSubmit = ({
-        event_name,
-        url,
-        landmark,
-        email,
-        mobile,
-        google_location,
-        event_date
+        constact_number_1,
+        constact_number_2,
+        whatsapp,
+        support_mail,
+        profile,
+        customerapp,
+        vendorapp,
+        customerapp_ios,
+        vendorapp_ios
     }) => {
+
         let data = new FormData();
-        data.append('event_name', event_name);
-        data.append('url', url);
-        data.append('google_location', google_location);
-        data.append('landmark', landmark);
-        data.append('email', email);
-        data.append('mobile', mobile);
-        data.append('event_date', event_date);
-        data.append('images', imageObj);
+        data.append('constact_number_1', constact_number_1);
+        data.append('constact_number_2', constact_number_2);
+        data.append('whatsapp', whatsapp);
+        data.append('support_mail', support_mail);
+        data.append('profile', profile);
+        data.append('customerapp', customerapp);
+        data.append('vendorapp', vendorapp);
+        data.append('customerapp_ios', customerapp_ios);
+        data.append('vendorapp_ios', vendorapp_ios);
+        // if (pageMode === 'edit') {
+        //     const categoryId = location.state.state.data?.id;
+        //     data.append('id', categoryId);
+        // }
+
         const apiCall =
             pageMode === 'add'
-                ? apis.addEvents(data)
-                : apis.editEvents(location.state.state.data?.id, data);
+                ? apis.addVendorSupport(data)
+                : apis.editVendorSupport(location.state.state.data?.id, data);
+
         apiCall
             .then(res => {
                 toastMessage(
                     pageMode === 'add' ? `Successfully Added ` : `Successfully updated`,
                 );
-                history.push('/ViewEvents');
+                history.push('/ViewVendorSupport');
             })
             .catch(err => {
                 failureNotification('Network error');
@@ -67,29 +70,20 @@ export default function AddEditEvents({ pageMode = 'add' }) {
     useEffect(() => {
         if (location.state) {
             let params = location.state.state.data;
-            setValue('event_name', params.event_name);
-            setValue('landmark', params.landmark);
-            setValue('email', params.email);
-            setValue('mobile', params.mobile);
-            setValue('url', params.url);
-            setValue('google_location', params.google_location);
-            setValue('event_date', formatDate(params.event_date));
-            setImage(params.images);
-            console.log('image', params.images);
+            setValue('constact_number_1', params.constact_number_1);
+            setValue('constact_number_2', params.constact_number_2);
+            setValue('whatsapp', params.whatsapp);
+            setValue('support_mail', params.support_mail);
+            setValue('profile', params.profile);
+            setValue('customerapp', params.customerapp);
+            setValue('vendorapp', params.vendorapp);
+            setValue('customerapp_ios', params.customerapp_ios);
+            setValue('vendorapp_ios', params.vendorapp_ios);
+            setValue('id', params.id);
         } else {
-            history.push('/AddEvents');
+            history.push('/AddVendorSupport');
         }
     }, []);
-
-    const formatDate = date => {
-        const d = new Date(date);
-        const year = d.getFullYear();
-        const month = (d.getMonth() + 1).toString().padStart(2, '0');
-        const day = d.getDate().toString().padStart(2, '0');
-        const hours = d.getHours().toString().padStart(2, '0');
-        const minutes = d.getMinutes().toString().padStart(2, '0');
-        return `${year}-${month}-${day}T${hours}:${minutes}`;
-    };
 
     return (
         <Container component="main" maxWidth="sm">
@@ -99,7 +93,7 @@ export default function AddEditEvents({ pageMode = 'add' }) {
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
                             <Typography component="h1" variant="h5" className={classes.title}>
-                                {pageMode === 'add' ? 'ADD' : 'EDIT'} EVENTS
+                                {pageMode === 'add' ? 'ADD' : 'EDIT'} VENDOR SUPPORT
                             </Typography>
                         </Grid>
 
@@ -108,12 +102,54 @@ export default function AddEditEvents({ pageMode = 'add' }) {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="event_name"
-                                label="Event Name"
+                                name="constact_number_1"
+                                label="Constact Number 1"
+                                type="number"
+                                InputLabelProps={{ shrink: true }}
+                                id="constact_number_1"
+                                {...register('constact_number_1', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="constact_number_2"
+                                label="Constact Number 2"
+                                type="number"
+                                InputLabelProps={{ shrink: true }}
+                                id="constact_number_2"
+                                {...register('constact_number_2', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="whatsapp"
+                                label="Whatsapp"
+                                type="number"
+                                InputLabelProps={{ shrink: true }}
+                                id="whatsapp"
+                                {...register('whatsapp', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="support_mail"
+                                label="Support Mail"
                                 type="text"
                                 InputLabelProps={{ shrink: true }}
-                                id="event_name"
-                                {...register('event_name', { required: true })}
+                                id="support_mail"
+                                {...register('support_mail', { required: true })}
                             />
                         </Grid>
 
@@ -122,12 +158,12 @@ export default function AddEditEvents({ pageMode = 'add' }) {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="url"
-                                label="URL"
+                                name="profile"
+                                label="Profile BaseURL"
                                 type="text"
                                 InputLabelProps={{ shrink: true }}
-                                id="url"
-                                {...register('url', { required: true })}
+                                id="profile"
+                                {...register('profile', { required: true })}
                             />
                         </Grid>
 
@@ -136,12 +172,12 @@ export default function AddEditEvents({ pageMode = 'add' }) {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="landmark"
-                                label="LandMark"
+                                name="customerapp"
+                                label="Customer"
                                 type="text"
                                 InputLabelProps={{ shrink: true }}
-                                id="landmark"
-                                {...register('landmark', { required: true })}
+                                id="customerapp"
+                                {...register('customerapp', { required: true })}
                             />
                         </Grid>
 
@@ -150,12 +186,12 @@ export default function AddEditEvents({ pageMode = 'add' }) {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="google_location"
-                                label="Google Locations"
+                                name="vendorapp"
+                                label="Vendor"
                                 type="text"
                                 InputLabelProps={{ shrink: true }}
-                                id="google_location"
-                                {...register('google_location', { required: true })}
+                                id="vendorapp"
+                                {...register('vendorapp', { required: true })}
                             />
                         </Grid>
 
@@ -164,12 +200,12 @@ export default function AddEditEvents({ pageMode = 'add' }) {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="mobile"
-                                label="Mobile Number"
+                                name="customerapp_ios"
+                                label="Customer IOS"
                                 type="text"
                                 InputLabelProps={{ shrink: true }}
-                                id="mobile"
-                                {...register('mobile', { required: true })}
+                                id="customerapp_ios"
+                                {...register('customerapp_ios', { required: true })}
                             />
                         </Grid>
 
@@ -178,73 +214,13 @@ export default function AddEditEvents({ pageMode = 'add' }) {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="email"
-                                label="Mail ID"
-                                type="email"
+                                name="vendorapp_ios"
+                                label="Vendor IOS"
+                                type="text"
                                 InputLabelProps={{ shrink: true }}
-                                id="email"
-                                {...register('email', { required: true })}
+                                id="vendorapp_ios"
+                                {...register('vendorapp_ios', { required: true })}
                             />
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="start_date"
-                                label="Event Start Date"
-                                type="datetime-local"
-                                InputLabelProps={{ shrink: true }}
-                                id="start_date"
-                                {...register('start_date', { required: true })}
-                            />
-                        </Grid>
-                        
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="end_date"
-                                label="Event End Date"
-                                type="datetime-local"
-                                InputLabelProps={{ shrink: true }}
-                                id="end_date"
-                                {...register('end_date', { required: true })}
-                            />
-                        </Grid>
-
-                        <Grid item xs={6}>
-                            <div style={{ display: 'flex' }}>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    ref={hiddenFileInput}
-                                    style={{ display: 'none' }}
-                                    onChange={handleImageChange}
-                                    id="contained-button-file"
-                                />
-                                <label htmlFor="contained-button-file">
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        component="span"
-                                        htmlFor="contained-button-file"
-                                    >
-                                        ADD LOGO *
-                                    </Button>
-                                </label>
-                                <img
-                                    src={
-                                        typeof imageObj === 'object'
-                                            ? URL.createObjectURL(imageObj)
-                                            : images
-                                    }
-                                    alt=""
-                                    style={{ paddingLeft: '10px', width: '100px' }}
-                                />
-                            </div>
                         </Grid>
 
                         <Grid item xs={12}>
@@ -273,7 +249,7 @@ export default function AddEditEvents({ pageMode = 'add' }) {
                                         variant="contained"
                                         style={{ backgroundColor: LIGHT_GREY.length, width: 150 }}
                                         onClick={() => {
-                                            history.push('/ViewEvents');
+                                            history.push('/ViewVendorSupport');
                                         }}
                                     >
                                         Back

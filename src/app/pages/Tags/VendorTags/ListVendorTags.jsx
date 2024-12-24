@@ -21,7 +21,7 @@ export default function ListVendorTags() {
 
     const columns = [
         { field: 'name', title: 'Vendor Tags' },
-        { field: 'id', title: 'Vendor ID' },
+        { field: 'id', title: 'Vendor Tag ID' },
         {
             field: 'actions',
             title: 'Actions',

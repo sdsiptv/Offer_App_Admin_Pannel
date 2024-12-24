@@ -20,9 +20,9 @@ export default function ViewProductTags() {
   const { register, handleSubmit, setValue } = useForm();
 
   const columns = [
-    { field: 'name', title: 'Vendor Tags' },
+    { field: 'name', title: 'Product Tags' },
     { field: 'position', title: 'Position' },
-    { field: 'id', title: 'Vendor ID' },
+    { field: 'id', title: 'Product Tag ID' },
     {
       field: 'actions',
       title: 'Actions',

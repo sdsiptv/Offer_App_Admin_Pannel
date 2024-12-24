@@ -20,6 +20,14 @@ export default function ViewAllVendors() {
     const [openDialog, setOpenDialog] = useState(false);
 
     const columns = [
+        {
+            field: 'images',
+            title: 'Logo',
+            render: rowData =>
+                typeof rowData.images == 'string' ? (
+                    <img src={rowData.images} alt="" width={40} height={30} />
+                ) : null,
+        },
         { field: 'id', title: 'Vendor ID' },
         { field: 'shop_name', title: 'Shop Name' },
         { field: 'emailid', title: 'EmailID' },
@@ -93,6 +101,10 @@ export default function ViewAllVendors() {
                         <TableContainer>
                             <Table>
                                 <TableBody>
+                                    <TableRow>
+                                        <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Shop Image:</Typography></TableCell>
+                                        <TableCell style={{ fontSize: "18px" }}>{selectedVendor.images}</TableCell>
+                                    </TableRow>
                                     <TableRow>
                                         <TableCell><Typography style={{ fontSize: "18px", color: "#000000", fontWeight: "700" }}>Shop Name:</Typography></TableCell>
                                         <TableCell style={{ fontSize: "18px" }}>{selectedVendor.shop_name}</TableCell>

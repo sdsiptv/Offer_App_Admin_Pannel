@@ -192,32 +192,32 @@ const apis = {
     );
   },
 
-    //--------------- Ad Insertion --------------//
+  //--------------- Ad Insertion --------------//
 
-    getAdInsertion: () => {
-      return API.get(API_ENDPOINTS.GET_AD_INSERTION);
-    },
-  
-    addAdInsertion: formData => {
-      return API.post(API_ENDPOINTS.POST_AD_INSERTION, formData, {
+  getAdInsertion: () => {
+    return API.get(API_ENDPOINTS.GET_AD_INSERTION);
+  },
+
+  addAdInsertion: formData => {
+    return API.post(API_ENDPOINTS.POST_AD_INSERTION, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  editAdInsertion: (id, formData) => {
+    return API.put(API_ENDPOINTS.EDIT_AD_INSERTION + "/" + id, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  deleteAdInsertion: id => {
+    return API.delete(
+      API_ENDPOINTS.DELETE_AD_INSERTION + '?id=' + id,
+      {
         [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
-      });
-    },
-  
-    editAdInsertion: (id, formData) => {
-      return API.put(API_ENDPOINTS.EDIT_AD_INSERTION + "/" + id, formData, {
-        [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
-      });
-    },
-  
-    deleteAdInsertion: id => {
-      return API.delete(
-        API_ENDPOINTS.DELETE_AD_INSERTION + '?id=' + id,
-        {
-          [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
-        },
-      );
-    },
+      },
+    );
+  },
 
   //--------------- OFFER USING ID --------------//
 
@@ -366,6 +366,33 @@ const apis = {
   deleteCustomerSupport: id => {
     return API.delete(
       API_ENDPOINTS.DELETE_CUSTOMER_SUPPORT + '/' + id,
+      {
+        [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+      },
+    );
+  },
+
+  //--------------- VENDOR SUPPORT --------------//
+
+  getVendorSupport: () => {
+    return API.get(API_ENDPOINTS.GET_VENDOR_SUPPORT);
+  },
+
+  addVendorSupport: formData => {
+    return API.post(API_ENDPOINTS.POST_VENDOR_SUPPORT, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  editVendorSupport: (id, formData) => {
+    return API.put(API_ENDPOINTS.EDIT_VENDOR_SUPPORT + "/" + id, formData, {
+      [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
+    });
+  },
+
+  deleteVendorSupport: id => {
+    return API.delete(
+      API_ENDPOINTS.DELETE_VENDOR_SUPPORT + '/' + id,
       {
         [HEADERS.CONTENT_TYPE]: [HEADERS.MULTIPART],
       },

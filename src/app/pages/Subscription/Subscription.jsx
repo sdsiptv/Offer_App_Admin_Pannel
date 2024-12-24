@@ -17,10 +17,13 @@ export default function Subscription() {
   const [PendingVendors, setPendingVendors] = useState([]);
   const history = useHistory();
   const columns = [
-    { field: 'subscription_type', title: 'subscription_type' },
+    {
+      field: 'subscription_type',
+      title: 'Subscription Type'
+    },
     {
       field: 'followers',
-      title: 'followers',
+      title: 'Followers',
       sorting: false,
       render: rowData => (
         <Tooltip title="Select">
@@ -34,7 +37,7 @@ export default function Subscription() {
     },
     {
       field: 'notification',
-      title: 'notification',
+      title: 'Notification',
       sorting: false,
       render: rowData => (
         <Tooltip title="Select">
@@ -48,7 +51,7 @@ export default function Subscription() {
     },
     {
       field: 'following_advanced',
-      title: 'following_advanced',
+      title: 'Following Advanced',
       sorting: false,
       render: rowData => (
         <Tooltip title="Select">
@@ -62,7 +65,7 @@ export default function Subscription() {
     },
     {
       field: 'statistics_advanced',
-      title: 'statistics_advanced',
+      title: 'Statistics Advanced',
       sorting: false,
       render: rowData => (
         <Tooltip title="Select">
@@ -76,10 +79,25 @@ export default function Subscription() {
     },
     {
       field: 'offer_count',
-      title: 'offer_count',
+      title: 'Offer Count',
       sorting: false,
       render: rowData => (
-        <Tooltip title="Enter offer count">
+        <Tooltip title="Enter offer count / day">
+          <TextField
+            value={rowData.offer_count}
+            type="number"
+            variant="outlined"
+            onChange={e => handleTextFieldChange(rowData, e.target.value)}
+          />
+        </Tooltip>
+      ),
+    },
+    {
+      field: 'notification_count',
+      title: 'Notification Count',
+      sorting: false,
+      render: rowData => (
+        <Tooltip title="Enter Notification count / day">
           <TextField
             value={rowData.offer_count}
             type="number"
@@ -168,7 +186,7 @@ export default function Subscription() {
   }, []);
 
   return (
-    <Container component="main" maxWidth="lg">
+    <Container component="main" maxWidth="xl">
       <CssBaseline />
       <div className={classes.paper}>
         <Grid container spacing={1}>

@@ -19,9 +19,10 @@ import Graph from "../../assets/Overall Earning.svg";
 import Growth from "../../assets/Line Graph 2.svg";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPeopleGroup,  faStarOfDavid, faCircleExclamation, faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faPeopleGroup, faStarOfDavid, faCircleExclamation, faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
 import { faShopify } from '@fortawesome/free-brands-svg-icons';
 import { faUserLock } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const classes = useStyles();
@@ -44,7 +45,7 @@ function Dashboard() {
         <div className={classes.paper_main}>
           <Grid container spacing={2} style={{ justifyContent: "space-between" }}>
 
-            <ResponsiveContainer width="22%" height="100%">
+            {/* <ResponsiveContainer width="22%" height="100%">
               <Paper className={classes.paper}>
                 <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
                   <FontAwesomeIcon icon={faPeopleGroup} style={{ fontSize: "30px", color: "#dc7633" }} />
@@ -58,37 +59,73 @@ function Dashboard() {
                   <img className={classes.img} src={Yes} style={{ marginLeft: "60%" }} width="100px"></img>
                 </div>
               </Paper>
+            </ResponsiveContainer> */}
+
+
+            <ResponsiveContainer width="22%" height="100%">
+              <Paper className={classes.paper}>
+                <Link to="/ViewUsers" style={{ textDecoration: "none", color: "inherit" }}>
+                  <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
+                    <FontAwesomeIcon
+                      icon={faPeopleGroup}
+                      style={{ fontSize: "30px", color: "#dc7633" }}
+                    />
+                    <div style={{ display: "flex" }}>
+                      <span style={{ fontSize: "18px", marginTop: "5px" }} className={classes.total}>
+                        TOTAL
+                      </span>
+                      <span style={{ fontSize: "18px", marginTop: "5px", marginLeft: "4px" }} className={classes.users}>
+                        CUSTOMERS
+                      </span>
+                    </div>
+                    <span className={classes.text}>{dashboard.all_customers}</span>
+                  </div>
+                </Link>
+                <div>
+                  <img
+                    className={classes.img}
+                    src={Yes}
+                    style={{ marginLeft: "60%" }}
+                    width="100px"
+                    alt="Yes"
+                  />
+                </div>
+              </Paper>
             </ResponsiveContainer>
 
             <ResponsiveContainer width="24%" height="100%">
               <Paper className={classes.paper}>
-                <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
-                  <FontAwesomeIcon icon={faShopify} style={{ fontSize: "30px", color: "#dc7633" }} />
-                  <div style={{ display: "flex" }}>
-                    <text style={{ fontSize: "18", marginTop: "5px" }} className={classes.total}>TOTAL</text>
-                    <text style={{ fontSize: "18", marginTop: "5px", marginLeft: "4px" }} className={classes.users}> VENDORS</text>
+                <Link to="/ListAllVendors" style={{ textDecoration: "none", color: "inherit" }}>
+                  <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
+                    <FontAwesomeIcon icon={faShopify} style={{ fontSize: "30px", color: "#dc7633" }} />
+                    <div style={{ display: "flex" }}>
+                      <text style={{ fontSize: "18", marginTop: "5px" }} className={classes.total}>TOTAL</text>
+                      <text style={{ fontSize: "18", marginTop: "5px", marginLeft: "4px" }} className={classes.users}> VENDORS</text>
+                    </div>
+                    <text className={classes.text}>{dashboard.all_vendors}</text>
                   </div>
-                  <text className={classes.text}>{dashboard.all_vendors}</text>
-                </div>
-                <div>
-                  <img className={classes.img} src={Growth} style={{ marginLeft: "60%" }} width="100px"></img>
-                </div>
+                  <div>
+                    <img className={classes.img} src={Growth} style={{ marginLeft: "60%" }} width="100px"></img>
+                  </div>
+                </Link>
               </Paper>
             </ResponsiveContainer>
 
             <ResponsiveContainer width="22%" height="100%">
               <Paper className={classes.paper}>
-                <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
-                  <FontAwesomeIcon icon={faUserLock} style={{ fontSize: "30px", color: "#dc7633" }} />
-                  <div style={{ display: "flex" }}>
-                    <text style={{ fontSize: "18", marginTop: "5px" }} className={classes.total}>BLOCKED</text>
-                    <text style={{ fontSize: "18", marginTop: "5px", marginLeft: "4px" }} className={classes.users}> CUSTOMERS</text>
+                <Link to="/ViewBlockListUsers" style={{ textDecoration: "none", color: "inherit" }}>
+                  <div style={{ display: "grid", marginTop: "10px", marginLeft: "10px" }}>
+                    <FontAwesomeIcon icon={faUserLock} style={{ fontSize: "30px", color: "#dc7633" }} />
+                    <div style={{ display: "flex" }}>
+                      <text style={{ fontSize: "18", marginTop: "5px" }} className={classes.total}>BLOCKED</text>
+                      <text style={{ fontSize: "18", marginTop: "5px", marginLeft: "4px" }} className={classes.users}> USERS</text>
+                    </div>
+                    <text className={classes.text}>{dashboard.blocked_customers}</text>
                   </div>
-                  <text className={classes.text}>{dashboard.blocked_customers}</text>
-                </div>
-                <div>
-                  <img className={classes.img2} src={Growth} style={{ marginLeft: "70%" }} width="100px"></img>
-                </div>
+                  <div>
+                    <img className={classes.img2} src={Growth} style={{ marginLeft: "70%" }} width="100px"></img>
+                  </div>
+                </Link>
               </Paper>
             </ResponsiveContainer>
 
@@ -112,42 +149,48 @@ function Dashboard() {
 
             <Grid item xs={12} md={3}>
               <Paper className={classes.feedbackBlood}>
-                <div className={classes.divDonor}>
-                  <div className={classes.donorInfo}>
-                    <text className={classes.blood}>Total</text>
-                    <text className={classes.donor} style={{ marginLeft: "4px" }}> Verified</text>
+                <Link to="/ListPendingVendors" style={{ textDecoration: "none", color: "inherit" }}>
+                  <div className={classes.divDonor}>
+                    <div className={classes.donorInfo}>
+                      <text className={classes.blood}>Pending</text>
+                      <text className={classes.donor} style={{ marginLeft: "4px" }}> Vendors</text>
+                    </div>
+                    <div className={classes.donorDetails}>
+                      <FontAwesomeIcon icon={faStarOfDavid} style={{ color: "#dc7633" }} />
+                      <text className={classes.donorCount}>{dashboard.verified_vendors}</text>
+                    </div>
                   </div>
-                  <div className={classes.donorDetails}>
-                    <FontAwesomeIcon icon={faStarOfDavid} style={{ color: "#dc7633" }} />
-                    <text className={classes.donorCount}>{dashboard.verified_vendors}</text>
-                  </div>
-                </div>
+                </Link>
 
                 <Divider className={classes.divider} />
 
-                <div className={classes.divDonor}>
-                  <div className={classes.donorInfo}>
-                    <text className={classes.blood}>Total</text>
-                    <text className={classes.donor} style={{ marginLeft: "4px" }}> Unverified</text>
+                <Link to="/ListVerifiedVendors" style={{ textDecoration: "none", color: "inherit" }}>
+                  <div className={classes.divDonor}>
+                    <div className={classes.donorInfo}>
+                      <text className={classes.blood}>Approved</text>
+                      <text className={classes.donor} style={{ marginLeft: "4px" }}> Vendors</text>
+                    </div>
+                    <div className={classes.donorDetails}>
+                      <FontAwesomeIcon icon={faCircleExclamation} style={{ fontSize: "25px", color: "#dc7633" }} />
+                      <text className={classes.donorCount}>{dashboard.pending_vendors}</text>
+                    </div>
                   </div>
-                  <div className={classes.donorDetails}>
-                    <FontAwesomeIcon icon={faCircleExclamation} style={{ fontSize: "25px", color: "#dc7633" }} />
-                    <text className={classes.donorCount}>{dashboard.pending_vendors}</text>
-                  </div>
-                </div>
-
+                </Link>
+                
                 <Divider className={classes.divider} />
 
-                <div className={classes.divDonor}>
-                  <div className={classes.donorInfo}>
-                    <text className={classes.blood}>Total</text>
-                    <text className={classes.donor} style={{ marginLeft: "4px" }}> Reject</text>
+                <Link to="/ListRejectedVendors" style={{ textDecoration: "none", color: "inherit" }}>
+                  <div className={classes.divDonor}>
+                    <div className={classes.donorInfo}>
+                      <text className={classes.blood}>Reject</text>
+                      <text className={classes.donor} style={{ marginLeft: "4px" }}>Vendor </text>
+                    </div>
+                    <div className={classes.donorDetails}>
+                      <FontAwesomeIcon icon={faRectangleXmark} style={{ fontSize: "25px", color: "#dc7633" }} />
+                      <text className={classes.donorCount}>{dashboard.rejected_vendors}</text>
+                    </div>
                   </div>
-                  <div className={classes.donorDetails}>
-                    <FontAwesomeIcon icon={faRectangleXmark} style={{ fontSize: "25px", color: "#dc7633" }} />
-                    <text className={classes.donorCount}>{dashboard.rejected_vendors}</text>
-                  </div>
-                </div>
+                </Link>
               </Paper>
             </Grid>
 

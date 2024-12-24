@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
+import { render } from 'react-dom';
 
 export default function ListAdInsertion() {
     const classes = useStyles();
@@ -24,30 +25,38 @@ export default function ListAdInsertion() {
                     <img src={rowData.images} alt="" width={40} height={30} />
                 ) : null,
         },
-        { field: 'offer_name', title: 'Offer' },
-        { field: 'position', title: 'Position' },
-        { field: 'url', title: 'URL' },
         {
-            field: 'actions',
-            title: 'Actions',
-            sorting: false,
-            render: rowData => (
-                <Tooltip title="Edit">
-                    <IconButton
-                        variant="contained"
-                        size="small"
-                        color="secondary"
-                        onClick={() => {
-                            history.push('EditAdInsertion', {
-                                state: { data: rowData },
-                            });
-                        }}
-                    >
-                        <EditIcon />
-                    </IconButton>
-                </Tooltip>
-            ),
+            field: 'offer_name',
+            title: 'Offer',
+        render:(rowData)=>rowData.offer_name || <span style={{ color: '#ec7063' }}>No Offer available</span>
         },
+        { field: 'position', title: 'Position' },
+        {
+            field: 'url',
+            title: 'URL',
+            render: (rowData) => rowData.url || <span style={{ color: '#ec7063' }}>No URL available</span>,
+        },
+        // {
+        //     field: 'actions',
+        //     title: 'Actions',
+        //     sorting: false,
+        //     render: rowData => (
+        //         <Tooltip title="Edit">
+        //             <IconButton
+        //                 variant="contained"
+        //                 size="small"
+        //                 color="secondary"
+        //                 onClick={() => {
+        //                     history.push('EditAdInsertion', {
+        //                         state: { data: rowData },
+        //                     });
+        //                 }}
+        //             >
+        //                 <EditIcon />
+        //             </IconButton>
+        //         </Tooltip>
+        //     ),
+        // },
     ];
 
     const getAdInsertion = () => {

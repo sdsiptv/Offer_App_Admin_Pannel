@@ -59,6 +59,8 @@ import ViewHotOffers from './pages/Administrator/HotOffers/ViewHotOffers';
 import AddEditHotOffers from './pages/Administrator/HotOffers/AddEditHotOffers';
 import AddEditAdInsertion from './pages/Administrator/AdInsertion/AddEditAdInsertion/AddEditAdInsertion';
 import ListAdInsertion from './pages/Administrator/AdInsertion/ListAdInsertion/ListAdInsertion';
+import ViewVendorSupport from './pages/VendorSupport/ViewVendorSupport';
+import AddEditVendorSupport from './pages/VendorSupport/AddEditVendorSupport/AddEditVendorSupport';
 
 
 export function App() {
@@ -299,6 +301,23 @@ export function App() {
           <PrivateRoute
             path="/EditCustomerSupport"
             component={AddEditCustomerSupport}
+            pageMode="edit"
+          />
+
+          {/*----------- VENDOR SUPPORT ------------*/}
+
+          <PrivateRoute
+            path="/ViewVendorSupport"
+            component={ViewVendorSupport}
+          />
+          <PrivateRoute
+            path="/AddVendorSupport"
+            component={AddEditVendorSupport}
+            pageMode="add"
+          />
+          <PrivateRoute
+            path="/EditVendorSupport"
+            component={AddEditVendorSupport}
             pageMode="edit"
           />
 

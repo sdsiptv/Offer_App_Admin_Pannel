@@ -28,9 +28,10 @@ export default function AddEditCustomerSupport({ pageMode = 'add' }) {
         constact_number_2,
         whatsapp,
         support_mail,
-        profile,
         customerapp,
-        vendorapp
+        vendorapp,
+        customerapp_ios,
+        vendorapp_ios
     }) => {
 
         let data = new FormData();
@@ -38,9 +39,10 @@ export default function AddEditCustomerSupport({ pageMode = 'add' }) {
         data.append('constact_number_2', constact_number_2);
         data.append('whatsapp', whatsapp);
         data.append('support_mail', support_mail);
-        data.append('profile', profile);
         data.append('customerapp', customerapp);
         data.append('vendorapp', vendorapp);
+        data.append('customerapp_ios', customerapp_ios);
+        data.append('vendorapp_ios', vendorapp_ios);
         // if (pageMode === 'edit') {
         //     const categoryId = location.state.state.data?.id;
         //     data.append('id', categoryId);
@@ -70,9 +72,10 @@ export default function AddEditCustomerSupport({ pageMode = 'add' }) {
             setValue('constact_number_2', params.constact_number_2);
             setValue('whatsapp', params.whatsapp);
             setValue('support_mail', params.support_mail);
-            setValue('profile', params.profile);
             setValue('customerapp', params.customerapp);
             setValue('vendorapp', params.vendorapp);
+            setValue('customerapp_ios', params.customerapp_ios);
+            setValue('vendorapp_ios', params.vendorapp_ios);
             setValue('id', params.id);
         } else {
             history.push('/AddCustomerSupport');
@@ -152,20 +155,6 @@ export default function AddEditCustomerSupport({ pageMode = 'add' }) {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="profile"
-                                label="Profile BaseURL"
-                                type="text"
-                                InputLabelProps={{ shrink: true }}
-                                id="profile"
-                                {...register('profile', { required: true })}
-                            />
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
                                 name="customerapp"
                                 label="Customer"
                                 type="text"
@@ -186,6 +175,34 @@ export default function AddEditCustomerSupport({ pageMode = 'add' }) {
                                 InputLabelProps={{ shrink: true }}
                                 id="vendorapp"
                                 {...register('vendorapp', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="customerapp_ios"
+                                label="Customer IOS"
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                id="customerapp_ios"
+                                {...register('customerapp_ios', { required: true })}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="vendorapp_ios"
+                                label="Vendor IOS"
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                id="vendorapp_ios"
+                                {...register('vendorapp_ios', { required: true })}
                             />
                         </Grid>
 

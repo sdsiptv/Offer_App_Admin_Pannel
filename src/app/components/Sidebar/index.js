@@ -25,15 +25,22 @@ export default function Sidebar() {
   const [open3, setOpen3] = useState(false);
   const [open4, setOpen4] = useState(false);
   const [open5, setOpen5] = useState(false);
+  const [open6, setOpen6] = useState(false);
+  const [open7, setOpen7] = useState(false);
+  const [open8, setOpen8] = useState(false);
+
 
 
   const options = [
     { name: 'Administrator', open: open, setOpen: setOpen },
     { name: 'Vendors', open: open1, setOpen: setOpen1 },
     { name: 'Tags', open: open2, setOpen: setOpen2 },
-    { name: 'Customer Support', open: open3, setOpen: setOpen3 },
+    { name: 'App Support', open: open3, setOpen: setOpen3 },
     { name: 'Users', open: open4, setOpen: setOpen4 },
     { name: 'Events', open: open5, setOpen: setOpen5 },
+    { name: 'Management', open: open6, setOpen: setOpen6 },
+    { name: 'Location', open: open7, setOpen: setOpen7 },
+    { name: 'Advertisement', open: open8, setOpen: setOpen8 },
   ];
 
   let SubscribersMenu = [
@@ -84,15 +91,95 @@ export default function Sidebar() {
           >
             {[
               { name: 'Admin SignUp', link: '/AdminSignUp' },
+            ].map((value, index) => {
+              return (
+                <ListItem
+                  buttons
+                  sx={{ pl: 2 }}
+                  key={value.name}
+                  className="listItem"
+                  onClick={() => {
+                    history.push(value.link);
+                  }}
+                >
+                  <ListItemText primary={value.name} />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
+
+        <Mybutton label="Management" onClick={handleClick} expand={open6} style={{ color: 'black' }} />
+        <Collapse in={open6} timeout="auto" unmountOnExit>
+          <List
+            component="div"
+            disablePadding
+            style={{ backgroundColor: 'white' }}
+          >
+            {[
               { name: 'Subscription', link: '/Subscription' },
               { name: 'Category', link: '/ListCategory' },
-              { name: 'Advertisement', link: '/advertisement' },
-              { name: 'Ad Insertion', link: '/ViewAdInsertion' },
               { name: 'Quantity Types', link: '/ListQuantityTypes' },
-              { name: 'Hot Offers', link: '/ViewHotOffers' },
+            ].map((value, index) => {
+              return (
+                <ListItem
+                  buttons
+                  sx={{ pl: 2 }}
+                  key={value.name}
+                  className="listItem"
+                  onClick={() => {
+                    history.push(value.link);
+                  }}
+                >
+                  <ListItemText primary={value.name} />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
+
+        <Mybutton label="Location" onClick={handleClick} expand={open7} style={{ color: 'black' }} />
+        <Collapse in={open7} timeout="auto" unmountOnExit>
+          <List
+            component="div"
+            disablePadding
+            style={{ backgroundColor: 'white' }}
+          >
+            {[
               { name: 'States', link: '/ListStates' },
               { name: 'District', link: '/ListDistrict' },
               { name: 'City', link: '/ListCity' },
+            ].map((value, index) => {
+              return (
+                <ListItem
+                  buttons
+                  sx={{ pl: 2 }}
+                  key={value.name}
+                  className="listItem"
+                  onClick={() => {
+                    history.push(value.link);
+                  }}
+                >
+                  <ListItemText primary={value.name} />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Collapse>
+
+        <Mybutton label="Advertisement" onClick={handleClick} expand={open8} style={{ color: 'black' }} />
+        <Collapse in={open8} timeout="auto" unmountOnExit>
+          <List
+            component="div"
+            disablePadding
+            style={{ backgroundColor: 'white' }}
+          >
+            {[
+
+              { name: 'Main Ads', link: '/advertisement' },
+              { name: 'Insertion Ads ', link: '/ViewAdInsertion' },
+              { name: 'Hot Offers', link: '/ViewHotOffers' },
+
             ].map((value, index) => {
               return (
                 <ListItem
@@ -229,7 +316,7 @@ export default function Sidebar() {
           </List>
         </Collapse>
 
-        <Mybutton label="Customer Support" onClick={handleClick} expand={open3} style={{ color: 'black' }} />
+        <Mybutton label="App Support" onClick={handleClick} expand={open3} style={{ color: 'black' }} />
         <Collapse in={open3} timeout="auto" unmountOnExit>
           <List
             component="div"
@@ -238,6 +325,7 @@ export default function Sidebar() {
           >
             {[
               { name: 'Customer Support', link: '/ViewCustomerSupport' },
+              { name: 'Vendor Support', link: '/ViewVendorSupport' },
             ].map((value, index) => {
               return (
                 <ListItem

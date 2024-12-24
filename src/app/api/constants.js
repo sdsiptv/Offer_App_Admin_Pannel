@@ -87,6 +87,11 @@ const API_ENDPOINTS = {
   EDIT_CUSTOMER_SUPPORT: `${BASE_URL}/api/customerSupport/update`,
   DELETE_CUSTOMER_SUPPORT: `${BASE_URL}/api/customerSupport/delete`,
 
+  GET_VENDOR_SUPPORT: `${BASE_URL}/api/vendorSupport`,
+  POST_VENDOR_SUPPORT: `${BASE_URL}/api/vendorSupport/insert`,
+  EDIT_VENDOR_SUPPORT: `${BASE_URL}/api/vendorSupport/update`,
+  DELETE_VENDOR_SUPPORT: `${BASE_URL}/api/vendorSupport/delete`,
+
   GET_VENDOR_TAGS: `${BASE_URL}/api/vendorTags`,
   POST_VENDOR_TAGS: `${BASE_URL}/api/vendorTags/insert`,
   EDIT_VENDOR_TAGS: `${BASE_URL}/api/vendorTags/update`,

@@ -10,10 +10,10 @@ import { GREEN } from 'utils/constant/color';
 import { toastMessage } from 'utils/helper';
 import useStyles from 'styles/globalStyles';
 
-export default function ViewCustomerSupport() {
+export default function ViewVendorSupport() {
     const classes = useStyles();
     const history = useHistory();
-    const [CustomerSupport, setCustomerSupport] = useState([]);
+    const [VendorSupport, setVendorSupport] = useState([]);
 
     const columns = [
         { field: 'constact_number_1', title: 'Contact Number 1' },
@@ -24,7 +24,7 @@ export default function ViewCustomerSupport() {
         { field: 'customerapp', title: 'Customer' },
         { field: 'vendorapp_ios', title: 'Vendor IOS' },
         { field: 'customerapp_ios', title: 'Customer IOS' },
-        // { field: 'profile', title: 'Profile BaseURL' },
+        { field: 'profile', title: 'Profile BaseURL' },
         {
             field: 'actions',
             title: 'Actions',
@@ -36,7 +36,7 @@ export default function ViewCustomerSupport() {
                         size="small"
                         color="secondary"
                         onClick={() => {
-                            history.push('EditCustomerSupport', {
+                            history.push('EditVendorSupport', {
                                 state: { data: rowData },
                             });
                         }}
@@ -48,13 +48,13 @@ export default function ViewCustomerSupport() {
         },
     ];
 
-    const getCustomerSupport = () => {
-        apis.getCustomerSupport().then(res => {
+    const getVendorSupport = () => {
+        apis.getVendorSupport().then(res => {
             if (res?.data) {
                 const formattedData = [res.data];
-                setCustomerSupport(formattedData);
+                setVendorSupport(formattedData);
             } else {
-                setCustomerSupport([]);
+                setVendorSupport([]);
             }
         }).catch(error => {
             console.error("Failed to fetch customer support:", error);
@@ -65,7 +65,7 @@ export default function ViewCustomerSupport() {
 
 
     useEffect(() => {
-        getCustomerSupport();
+        getVendorSupport();
     }, []);
 
     const deleteHandler = data => {
@@ -75,9 +75,9 @@ export default function ViewCustomerSupport() {
             return;
         }
         let idToDelete = filter[0];
-        apis.deleteCustomerSupport(idToDelete).then(() => {
+        apis.deleteVendorSupport(idToDelete).then(() => {
             toastMessage('Successfully Deleted');
-            getCustomerSupport();
+            getVendorSupport();
         });
     };
 
@@ -90,13 +90,13 @@ export default function ViewCustomerSupport() {
                         <Grid container spacing={1} alignItems="flex-end"></Grid>
                     </Grid>
                     <Grid item xs={2}>
-                        {CustomerSupport.length === 0 && (
+                        {VendorSupport.length === 0 && (
                             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                                 <Button
                                     variant="contained"
                                     style={{ backgroundColor: GREEN }}
                                     onClick={() => {
-                                        history.push('/AddCustomerSupport');
+                                        history.push('/AddVendorSupport');
                                     }}
                                 >
                                     Add Support
@@ -107,9 +107,9 @@ export default function ViewCustomerSupport() {
 
                     <Grid item xs={12}>
                         <MaterialTables
-                            title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>CUSTOMER SUPPORT</span>}
+                            title={<span style={{ color: '#ff3737', fontSize: "x-large" }}>VENDOR SUPPORT</span>}
                             columns={columns}
-                            data={CustomerSupport}
+                            data={VendorSupport}
                             deleteHandler={deleteHandler}
                         />
                     </Grid>
